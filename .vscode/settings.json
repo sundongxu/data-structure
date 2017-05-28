@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "iostream": "cpp",
+        "cstring": "cpp",
+        "string": "cpp",
+        "__bit_reference": "cpp",
+        "algorithm": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "ratio": "cpp",
+        "__locale": "cpp",
+        "memory": "cpp",
+        "utility": "cpp",
+        "limits": "cpp",
+        "ostream": "cpp"
+    }
+}
