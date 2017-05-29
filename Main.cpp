@@ -421,28 +421,57 @@ int main()
     // }
     // cout << endl;
 
-    // Test Disjkstra
-    char *elems = new char[5];
-    for (int i = 0; i < 5; ++i)
+    // // Test Disjkstra
+    // char *elems = new char[5];
+    // for (int i = 0; i < 5; ++i)
+    // {
+    //     elems[i] = (char)('A' + i);
+    // }
+    // AdjMatrixDirNetwork<char, int> net(elems, 5, 100000);
+    // net.InsertEdge(0, 1, 100);
+    // net.InsertEdge(0, 2, 30);
+    // net.InsertEdge(0, 4, 10);
+    // net.InsertEdge(2, 1, 60);
+    // net.InsertEdge(2, 3, 60);
+    // net.InsertEdge(3, 1, 10);
+    // net.InsertEdge(4, 3, 50);
+    // int *path = new int[5];
+    // int *dist = new int[5];
+    // ShortestPathDIJ(net, 0, path, dist);
+    // cout << "Dijkstra算法结果:" << endl;
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     // 输出从v0到各点的最短路径长度
+    //     cout << "v0到v" << i << "的最短路径长度为" << dist[i] << endl;
+    // }
+
+    // Test Floyd
+    char *elems = new char[3];
+    for (int i = 0; i < 3; i++)
     {
         elems[i] = (char)('A' + i);
     }
-    AdjMatrixDirNetwork<char, int> net(elems, 5, 100000);
-    net.InsertEdge(0, 1, 100);
-    net.InsertEdge(0, 2, 30);
-    net.InsertEdge(0, 4, 10);
-    net.InsertEdge(2, 1, 60);
-    net.InsertEdge(2, 3, 60);
-    net.InsertEdge(3, 1, 10);
-    net.InsertEdge(4, 3, 50);
-    int *path = new int[5];
-    int *dist = new int[5];
-    ShortestPathDIJ(net, 0, path, dist);
-    cout << "Dijkstra算法结果:" << endl;
-    for (int i = 0; i < 5; i++)
+    AdjListDirNetwork<char, int> net(elems, 3, 100000);
+    net.InsertEdge(0, 1, 4);
+    net.InsertEdge(0, 2, 11);
+    net.InsertEdge(1, 0, 6);
+    net.InsertEdge(1, 2, 2);
+    net.InsertEdge(2, 0, 1);
+    int **path = new int *[3];
+    int **dist = new int *[3];
+    for (int j = 0; j < 3; j++)
     {
-        // 输出从v0到各点的最短路径长度
-        cout << "v0到v" << i << "的最短路径长度为" << dist[i] << endl;
+        path[j] = new int[3];
+        dist[j] = new int[3];
+    }
+    ShortestPathFloyd(net, path, dist);
+    cout << "Floyd算法结果:" << endl;
+    for (int u = 0; u < 3; u++)
+    {
+        for (int v = 0; v < 3; v++)
+        {
+            cout << u << "到" << v << "的最短路径长度为" << dist[u][v] << endl;
+        }
     }
 
     return 0;

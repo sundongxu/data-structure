@@ -10,8 +10,11 @@
 #include "BinTreeNode.h"
 #include "AdjMatrixDirGraph.h"
 #include "AdjMatrixUndirGraph.h"
-#include "AdjMatrixUndirNetwork.h"
 #include "AdjMatrixDirNetwork.h"
+#include "AdjMatrixUndirNetwork.h"
+#include "AdjListDirGraph.h"
+#include "AdjListUndirGraph.h"
+#include "AdjListDirNetwork.h"
 #include "AdjListUndirNetwork.h"
 #include "KruskalForest.h"
 #include "KruskalEdge.h"
@@ -156,6 +159,12 @@ int CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net);
 */
 template <class ElemType, class WeightType>
 void ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist);
+
+/*
+    Froyd算法
+*/
+template <class ElemType, class WeightType>
+void ShortestPathFloyd(const AdjListDirNetwork<ElemType, WeightType> &net, int **path, WeightType **dist);
 
 template <class ElemType>
 void Difference(const SqList<ElemType> &la, const SqList<ElemType> &lb, SqList<ElemType> &lc)
@@ -1071,28 +1080,20 @@ void ShortestPathDIJ(AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int
         if (v == v0)
         {
             dist[v] = 0;
+            path[v] = v0;
         }
         else if (net.GetWeight(v0, v) < net.GetInfinity())
         {
             // 边存在
             dist[v] = net.GetWeight(v0, v);
+            path[v] = v0;
         }
         else
         {
             // 边不存在
             dist[v] = net.GetInfinity();
-        }
-
-        // dist[v] = (v0 != v && net.GetWeight(v0, v) == 0) ? net.GetInfinity() : net.GetWeight(v0, v);
-        if (v0 != v && dist[v] < net.GetInfinity())
-        {
-            // 存在v0到v的边
-            path[v] = v0;
-        }
-        else
-        {
-            path[v] = -1;             // 路径存放数组初始化
-            net.SetTag(v, UNVISITED); // 置顶点标志
+            path[v] = -1;
+            net.SetTag(v, UNVISITED);
         }
     }
     net.SetTag(v0, VISITED); // U = {v0}
@@ -1125,6 +1126,52 @@ void ShortestPathDIJ(AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int
                 // 如v2∈V-U且minVal+net.GetWeight(v1, v2)<dist[v2]，则修改dist[v2]及path[v2]
                 dist[v2] = minVal + net.GetWeight(v1, v2);
                 path[v2] = v1;
+            }
+        }
+    }
+}
+
+template <class ElemType, class WeightType>
+void ShortestPathFloyd(const AdjListDirNetwork<ElemType, WeightType> &net, int **path, WeightType **dist)
+{
+    // 操作结果：用Floyd算法求有向网net中各对顶点u和v之间的最短路径path[u][v]和路径长度
+    // dist[u][v]，path[u][v]存储从u到v对的最短路径上至此顶点的前一顶点的顶点号，dist[u][v]
+    // 存储从u到v的最短路径长度
+    for (int u = 0; u < net.GetVexNum(); u++)
+    {
+        for (int v = 0; v < net.GetVexNum(); v++)
+        {
+            // 初始化path和dist
+            if (v == u)
+            {
+                dist[u][v] = 0; // 自己到自己的距离为0
+                path[u][v] = u;
+            }
+            else if (net.GetWeight(u, v) < net.GetInfinity())
+            {
+                dist[u][v] = net.GetWeight(u, v);
+                path[u][v] = u;
+            }
+            else
+            {
+                dist[u][v] = net.GetInfinity();
+                path[u][v] = -1;
+            }
+        }
+    }
+
+    for (int k = 0; k < net.GetVexNum(); k++)
+    {
+        for (int i = 0; i < net.GetVexNum(); i++)
+        {
+            for (int j = 0; j < net.GetVexNum(); j++)
+            {
+                if (dist[i][k] + dist[k][j] < dist[i][j])
+                {
+                    // 从i到k再到j的路径长度更短
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    path[i][j] = path[k][j];
+                }
             }
         }
     }
