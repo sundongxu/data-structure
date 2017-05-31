@@ -8,7 +8,9 @@
 #include "SqList.h"
 #include "SimpleLinkList.h"
 #include "LinkList.h"
+#include "LinkStack.h"
 #include "LinkQueue.h"
+#include "CircularQueue.h"
 #include "BinTree.h"
 #include "String.h"
 #include "AdjMatrixDirGraph.h"
@@ -154,6 +156,27 @@ int main()
     // cout << "元素再次出队后:" << endl;
     // queue.Traverse(Print);
     // cout << endl;
+
+    // Test CircularQueue
+    CircularQueue<int> queue(5);
+    queue.InQueue(1);
+    queue.InQueue(2);
+    queue.InQueue(3);
+    queue.InQueue(4);
+    queue.InQueue(5);
+    cout << "当前队列元素为:" << endl;
+    queue.Traverse(Print);
+    cout << endl;
+    cout << "队列长度为:" << queue.Length() << endl;
+    int c = 0;
+    queue.OutQueue(c);
+    cout << "元素出队后:" << endl;
+    queue.Traverse(Print);
+    cout << endl;
+    queue.OutQueue(c);
+    cout << "元素再次出队后:" << endl;
+    queue.Traverse(Print);
+    cout << endl;
 
     // // Test Alg.h/Match
     // // char *s = "{a*[c+d*(e+f)]";  // 不推荐
@@ -445,34 +468,34 @@ int main()
     //     cout << "v0到v" << i << "的最短路径长度为" << dist[i] << endl;
     // }
 
-    // Test Floyd
-    char *elems = new char[3];
-    for (int i = 0; i < 3; i++)
-    {
-        elems[i] = (char)('A' + i);
-    }
-    AdjListDirNetwork<char, int> net(elems, 3, 100000);
-    net.InsertEdge(0, 1, 4);
-    net.InsertEdge(0, 2, 11);
-    net.InsertEdge(1, 0, 6);
-    net.InsertEdge(1, 2, 2);
-    net.InsertEdge(2, 0, 1);
-    int **path = new int *[3];
-    int **dist = new int *[3];
-    for (int j = 0; j < 3; j++)
-    {
-        path[j] = new int[3];
-        dist[j] = new int[3];
-    }
-    ShortestPathFloyd(net, path, dist);
-    cout << "Floyd算法结果:" << endl;
-    for (int u = 0; u < 3; u++)
-    {
-        for (int v = 0; v < 3; v++)
-        {
-            cout << u << "到" << v << "的最短路径长度为" << dist[u][v] << endl;
-        }
-    }
+    // // Test Floyd
+    // char *elems = new char[3];
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     elems[i] = (char)('A' + i);
+    // }
+    // AdjListDirNetwork<char, int> net(elems, 3, 100000);
+    // net.InsertEdge(0, 1, 4);
+    // net.InsertEdge(0, 2, 11);
+    // net.InsertEdge(1, 0, 6);
+    // net.InsertEdge(1, 2, 2);
+    // net.InsertEdge(2, 0, 1);
+    // int **path = new int *[3];
+    // int **dist = new int *[3];
+    // for (int j = 0; j < 3; j++)
+    // {
+    //     path[j] = new int[3];
+    //     dist[j] = new int[3];
+    // }
+    // ShortestPathFloyd(net, path, dist);
+    // cout << "Floyd算法结果:" << endl;
+    // for (int u = 0; u < 3; u++)
+    // {
+    //     for (int v = 0; v < 3; v++)
+    //     {
+    //         cout << u << "到" << v << "的最短路径长度为" << dist[u][v] << endl;
+    //     }
+    // }
 
     return 0;
 }
