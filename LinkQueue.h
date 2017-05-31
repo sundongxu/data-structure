@@ -25,8 +25,7 @@ protected:
 
 public:
   // 抽象数据类型方法声明及重载编译系统默认方法声明：
-  LinkQueue();
-
+  LinkQueue();                                                     // 构造函数
   virtual ~LinkQueue();                                            // 无参数的析构函数
   int Length() const;                                              // 返回队列长度
   bool Empty() const;                                              // 判断队列是否为空
