@@ -214,6 +214,27 @@ int main()
     // queue.Traverse(Print);
     // cout << endl;
 
+    // // Test CircularQueue
+    // CircularQueue<int> queue(5);
+    // queue.InQueue(1);
+    // queue.InQueue(2);
+    // queue.InQueue(3);
+    // queue.InQueue(4);
+    // queue.InQueue(5);
+    // cout << "当前队列元素为:" << endl;
+    // queue.Traverse(Print);
+    // cout << endl;
+    // cout << "队列长度为:" << queue.Length() << endl;
+    // int c = 0;
+    // queue.OutQueue(c);
+    // cout << "元素出队后:" << endl;
+    // queue.Traverse(Print);
+    // cout << endl;
+    // queue.OutQueue(c);
+    // cout << "元素再次出队后:" << endl;
+    // queue.Traverse(Print);
+    // cout << endl;
+
     // // Test Algorithm->Match
     // // char *s = "{a*[c+d*(e+f)]";  // 不推荐
     // char s[8] = "{[]a}ss"; // C++推荐字符串表示方法：字符数组，用字符串赋初值时，数组大小要比字符串大1
