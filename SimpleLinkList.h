@@ -2,12 +2,8 @@
 #define SIMPLE_LINKLIST_H
 
 #include <stddef.h>
+#include "Constant.h"
 #include "Node.h"
-
-#define SUCCESS 100
-#define NOT_PRESENT 200
-#define ENTRY_FOUND 300
-#define RANGE_ERROR 400
 
 // 简单线性链表表类
 template <class ElemType>
@@ -15,10 +11,8 @@ class SimpleLinkList
 {
 public:
   // 抽象数据类型方法声明及重载编译系统默认方法声明
-  SimpleLinkList();
-
-  virtual ~SimpleLinkList();
-
+  SimpleLinkList();                                                          // 构造函数
+  virtual ~SimpleLinkList();                                                 // 析构函数
   int Length() const;                                                        // 返回链表节点个数（注意考虑头结点嘛？）
   bool Empty() const;                                                        // 判空
   void Clear();                                                              // 清空链表
@@ -83,8 +77,9 @@ template <class ElemType>
 SimpleLinkList<ElemType>::~SimpleLinkList()
 {
   // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
-  Clear();     // 释放非头结点空间
-  delete head; // 释放头结点空间
+  Clear();           // 释放非头结点空间
+  head->next = NULL; // 这步很关键
+  delete head;       // 释放头结点空间
 }
 
 template <class ElemType>

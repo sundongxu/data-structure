@@ -1,0 +1,20 @@
+#ifndef CONSTANT_H
+#define CONSTANT_H
+
+#define DEFAULT_SIZE 1
+#define DEFAULT_INFINITY 100000
+
+#define SUCCESS 100
+#define NOT_PRESENT 200
+#define ENTRY_FOUND 300
+#define RANGE_ERROR 400
+#define OVER_FLOW 500
+#define UNDER_FLOW 600
+
+#define UNVISITED 0
+#define VISITED 1
+
+#define TOP_SUCCESS 1
+#define TOP_FAIL 0
+
+#endif // CONSTANT_H

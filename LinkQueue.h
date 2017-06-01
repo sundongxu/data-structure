@@ -2,14 +2,8 @@
 #define LINK_QUEUE_H
 
 #include <stddef.h>
+#include "Constant.h"
 #include "Node.h"
-
-#define SUCCESS 100
-#define NOT_PRESENT 200
-#define ENTRY_FOUND 300
-#define RANGE_ERROR 400
-#define OVER_FLOW 500
-#define UNDER_FLOW 600
 
 // 链式队列类
 template <class ElemType>

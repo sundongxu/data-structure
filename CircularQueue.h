@@ -1,10 +1,7 @@
 #ifndef CIRCULAR_QUEUE_H
 #define CIRCULAR_QUEUE_H
 
-#define DEFAULT_SIZE 1
-#define SUCCESS 100
-#define OVER_FLOW 200
-#define UNDER_FLOW 300
+#include "Constant.h"
 
 template <class ElemType>
 class CircularQueue

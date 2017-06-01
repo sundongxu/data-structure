@@ -39,6 +39,7 @@ template <class ElemType>
 Node<ElemType>::~Node()
 {
   // 操作结果：析构函数，释放指针域
+  // next->next = NULL;
   delete next;
 }
 

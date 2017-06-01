@@ -2,8 +2,11 @@
 #define ALG_H
 
 #include <stddef.h>
+#include "Constant.h"
 #include "cstring"
 #include "SqList.h"
+#include "SimpleLinkList.h"
+#include "SimpleCircLinkList.h"
 #include "LinkStack.h"
 #include "String.h"
 #include "BinTree.h"
@@ -19,12 +22,6 @@
 #include "KruskalForest.h"
 #include "KruskalEdge.h"
 
-#define UNVISITED 0
-#define VISITED 1
-
-#define TOP_SUCCESS 1
-#define TOP_FAIL 0
-
 /*
     基本算法及功能如下：
     （1）Difference(SqList &la, SqList &lb, SqList &lc):
@@ -33,39 +30,53 @@
         将顺序表元素分离(奇数放左边，偶数放右边)
     （3）Match(char *s):
         栈实现字符串中括号配对
-    （4）SimpleIndex(String &T, String &P, int pos):
+    （4）MergeList(const SimpleLinkList<ElemType> &la, const SimpleLinkList<ElemType> &lb, SimpleLinkList<ElemType> &lc):
+        将两递增有序链表合并成完整递增有序链表
+    （5）Josephus(int n. int m):
+        约瑟夫问题
+    （5）SimpleIndex(String &T, String &P, int pos):
         简单字符串匹配算法
-    （5）FrontRearIndex(String &T, String &P, int pos):
+    （6）FrontRearIndex(String &T, String &P, int pos):
         首尾字符串匹配算法
-    （6）KMPIndex(String &T, String &P, int pos):
+    （7）KMPIndex(String &T, String &P, int pos):
         KMP字符串匹配算法
-    （7）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （8）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树前序遍历非递归算法
-    （8）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （9）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树中序遍历非递归算法
-    （9）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （10）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树后序遍历非递归算法
-    （10）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （11）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图深度优先遍历算法
-    （11）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （12）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图广度优先遍历算法
-    （12）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
+    （13）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
         Prim最小生成树算法
-    （13）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
+    （14）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
         Kruskal最小生成树算法
-    （14）TopSort(const AdjMatrixDirGraph<ElemType> &g):
+    （15）TopSort(const AdjMatrixDirGraph<ElemType> &g):
         拓扑排序算法
-    （15）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
+    （16）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
         关键路径算法
-    （16）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
+    （17）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
         迪杰斯特拉 单源最短路径算法
 */
 
+// 计算集合差集lc
 template <class ElemType>
 void Difference(const SqList<ElemType> &la, const SqList<ElemType> &lb, SqList<ElemType> &lc);
 
+// 将顺序表元素分离(奇数放左边，偶数放右边)
 void Adjust(SqList<int> &la);
 
+// 将两递增有序链表合并成完整递增有序链表
+template <class ElemType>
+void MergeList(const SimpleLinkList<ElemType> &la, const SimpleLinkList<ElemType> &lb, SimpleLinkList<ElemType> &lc);
+
+// 约瑟夫问题
+void Josephus(int n, int m);
+
+// 栈实现字符串中括号配对
 bool Match(char *s);
 
 // 简单字符串模式匹配算法
@@ -226,6 +237,82 @@ void Adjust(SqList<int> &la)
             la.SetElem(bPosition, aItem);
         }
     }
+}
+
+template <class ElemType>
+void MergeList(const SimpleLinkList<ElemType> &la, const SimpleLinkList<ElemType> &lb, SimpleLinkList<ElemType> &lc)
+{
+    // 初始条件：la和lb中数据元素递增有序
+    // 操作结果：将la和lb合并为lc，使lc中数据元素仍递增有序
+    ElemType aItem, bItem;                            // la和lb中当前数据元素
+    int aLength = la.Length(), bLength = lb.Length(); // la和lb的长度
+    int aPosition = 1, bPosition = 1;                 // la和lb的当前元素序号
+
+    lc.Clear(); // 清空lc
+    while (aPosition <= aLength && bPosition <= bLength)
+    {
+        // 取出la和lb中数据元素进行归并
+        la.GetElem(aPosition, aItem);
+        lb.GetElem(bPosition, bItem);
+        if (aItem < bItem)
+        {
+            // 归并aItem
+            lc.Insert(lc.Length() + 1, aItem);
+            aPosition++; // 指向la下一数据元素
+        }
+        else
+        {
+            // 归并bItem
+            lc.Insert(lc.Length() + 1, bItem);
+            bPosition++; // 指向lb下一元素
+        }
+    }
+
+    while (aPosition <= aLength)
+    {
+        // 归并la中剩余数据元素
+        la.GetElem(aPosition, aItem);
+        lc.Insert(lc.Length() + 1, aItem);
+        aPosition++;
+    }
+    while (bPosition <= bLength)
+    {
+        // 归并lb中剩余数据元素
+        lb.GetElem(bPosition, bItem);
+        lc.Insert(lc.Length() + 1, bItem);
+        bPosition++;
+    }
+}
+
+void Josephus(int n, int m)
+{
+    // 操作结果：n和人围成一个圆圈，首先第1个人从1开始一个人一个人顺时针报数，
+    // 报到第m个人，令其出列。然后再从下一个人开始，从1顺时针报数报到第m个人，
+    // 再令其出列，......，如此下午，直到圆圈中只剩一个人为止。此人即为优胜者
+    SimpleCircLinkList<int> la; // 定义空循环链表
+    int position = 0;           // 报数到的人在链表中序号
+    int out, winner;
+    for (int k = 1; k <= n; k++)
+    {
+        la.Insert(k, k); // 建立数据域为1,2,...,n的循环链表
+    }
+    cout << "出列者:" << endl;
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 1; j <= m; j++) // 从1报数到m
+        {
+            position++;
+            if (position > la.Length())
+            {
+                position = 1;
+            }
+        }
+        la.Delete(position--, out); // 报数到m的人出列
+        cout << out << " ";
+    }
+    la.GetElem(1, winner); // 剩下的人序号为1，为优胜者
+    cout << endl
+         << "优胜者:" << winner << endl;
 }
 
 bool Match(char *s)

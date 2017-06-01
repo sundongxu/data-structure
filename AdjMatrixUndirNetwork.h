@@ -1,17 +1,7 @@
 #ifndef ADJ_MATRIX_UNDIR_NETWORK_H
 #define ADJ_MATRIX_UNDIR_NETWORK_H
 
-#define SUCCESS 100
-#define NOT_PRESENT 200
-#define ENTRY_FOUND 300
-#define RANGE_ERROR 400
-#define OVER_FLOW 500
-#define UNDER_FLOW 600
-
-#define DEFAULT_SIZE 1
-#define DEFAULT_INFINITY 100000
-#define VISITED 1
-#define UNVISITED 0
+#include "Constant.h"
 
 // 无向网的邻接矩阵类
 template <class ElemType, class WeightType>

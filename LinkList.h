@@ -2,15 +2,9 @@
 #define LINK_LIST_H
 
 #include <iostream>
-#include "stddef.h"
+#include <stddef.h>
+#include "Constant.h"
 #include "Node.h"
-
-#define SUCCESS 100
-#define NOT_PRESENT 200
-#define ENTRY_FOUND 300
-#define RANGE_ERROR 400
-#define OVER_FLOW 500
-#define UNDER_FLOW 600
 
 // 线性链表类
 template <class ElemType>

@@ -1,19 +1,9 @@
 #ifndef ADJ_LIST_DIR_GRAPH_H
 #define ADJ_LIST_DIR_GRAPH_H
 
+#include "Constant.h"
 #include "LinkList.h"
 #include "AdjListGraphVexNode.h"
-
-#define SUCCESS 100
-#define NOT_PRESENT 200
-#define ENTRY_FOUND 300
-#define RANGE_ERROR 400
-#define OVER_FLOW 500
-#define UNDER_FLOW 600
-
-#define DEFAULT_SIZE 1
-#define VISITED 1
-#define UNVISITED 0
 
 // 有向图的邻接表类
 template <class ElemType>

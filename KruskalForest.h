@@ -2,8 +2,7 @@
 #define KRUSKAL_FOREST_H
 
 #include <stddef.h> // 包含NULL定义，实际NULL==0
-
-#define DEFAULT_SIZE 1
+#include "Constant.h"
 
 // Kruskal算法实现，森林类
 class KruskalForest

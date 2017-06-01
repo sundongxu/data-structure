@@ -1,10 +1,9 @@
 #ifndef SQ_BIN_TREE_H
 #define SQ_BIN_TREE_H
 
+#include "Constant.h"
 #include "SqBinTreeNode.h"
 #include "BinTreeNode.h"
-
-#define DEFAULT_SIZE 1
 
 // 顺序二叉树类(数组)
 template <class ElemType>

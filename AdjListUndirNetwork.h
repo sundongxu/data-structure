@@ -2,20 +2,9 @@
 #define ADJ_LIST_UNDIR_NETWORK_H
 
 #include <stddef.h>
+#include "Constant.h"
 #include "AdjListNetworkVexNode.h"
 #include "AdjListNetworkEdge.h"
-
-#define SUCCESS 100
-#define NOT_PRESENT 200
-#define ENTRY_FOUND 300
-#define RANGE_ERROR 400
-#define OVER_FLOW 500
-#define UNDER_FLOW 600
-
-#define DEFAULT_SIZE 1
-#define DEFAULT_INFINITY 100000
-#define VISITED 1
-#define UNVISITED 0
 
 // 无向网的邻接表类
 template <class ElemType, class WeightType>

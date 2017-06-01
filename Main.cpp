@@ -7,6 +7,7 @@
 // #include <assert.h>
 #include "SqList.h"
 #include "SimpleLinkList.h"
+#include "SimpleCircLinkList.h"
 #include "LinkList.h"
 #include "LinkStack.h"
 #include "LinkQueue.h"
@@ -48,36 +49,68 @@ int main()
 
     // // Test SimpleLinkList
     // SimpleLinkList<int> simpleLinkList;
-    // simpleLinkList.Insert(1, 11);
-    // simpleLinkList.Insert(2, 22);
-    // simpleLinkList.Insert(3, 33);
+    // simpleLinkList.Insert(1, 1);
+    // simpleLinkList.Insert(2, 2);
+    // simpleLinkList.Insert(3, 3);
     // cout << "当前简单线性表元素为:" << endl;
     // simpleLinkList.Traverse(Print);
-    // cout << endl << "请输入想删除的元素位置:" << endl;
+    // cout << endl
+    //      << "请输入想删除的元素位置:" << endl;
     // int posToDelete, tmp;
     // cin >> posToDelete;
     // simpleLinkList.Delete(posToDelete, tmp);
     // cout << "删除元素后，简单线性表元素为:" << endl;
     // simpleLinkList.Traverse(Print);
-    // cout << endl << "请输入想插入的元素位置和元素值:" << endl;
+    // cout << endl
+    //      << "请输入想插入的元素位置和元素值:" << endl;
     // int posToInsert, tmp1;
     // cin >> posToInsert >> tmp1;
     // simpleLinkList.Insert(posToInsert, tmp1);
     // cout << "插入元素后，简单线性表元素为:" << endl;
     // simpleLinkList.Traverse(Print);
-    // cout << endl << "由原简单线性表复制构造得到的新简单线性表元素为:" << endl;
-    // SimpleLinkList<int> copyLinkList(simpleLinkList);  // 复制构造
+    // cout << endl
+    //      << "由原简单线性表复制构造得到的新简单线性表元素为:" << endl;
+    // SimpleLinkList<int> copyLinkList(simpleLinkList); // 复制构造
     // copyLinkList.Traverse(Print);
     // SimpleLinkList<int> linkList1;
-    // linkList1.Insert(1,111);
-    // linkList1.Insert(2,222);
-    // linkList1.Insert(3,333);
-    // cout<<endl<<"新简单线性表元素为:"<<endl;
+    // linkList1.Insert(1, 11);
+    // linkList1.Insert(2, 22);
+    // linkList1.Insert(3, 33);
+    // cout << endl
+    //      << "新简单线性表元素为:" << endl;
     // linkList1.Traverse(Print);
-    // linkList1 = simpleLinkList;  // 赋值运算
-    // cout<<endl<<"赋值操作后该新简单线性表元素为:"<<endl;
+    // linkList1 = simpleLinkList; // 赋值运算
+    // cout << endl
+    //      << "赋值操作后该新简单线性表元素为:" << endl;
     // linkList1.Traverse(Print);
     // cout << endl;
+
+    // // Test Algorithm->MergeList
+    // SimpleLinkList<int> la;
+    // la.Insert(1, 1);
+    // la.Insert(2, 3);
+    // la.Insert(3, 5);
+    // la.Insert(4, 7);
+    // la.Insert(5, 11);
+    // cout << "la元素为:" << endl;
+    // la.Traverse(Print);
+    // cout << endl;
+    // SimpleLinkList<int> lb;
+    // lb.Insert(1, 0);
+    // lb.Insert(2, 2);
+    // lb.Insert(3, 4);
+    // lb.Insert(4, 6);
+    // lb.Insert(5, 8);
+    // lb.Insert(6, 10);
+    // cout << "lb元素为:" << endl;
+    // lb.Traverse(Print);
+    // cout << endl;
+    // SimpleLinkList<int> lc;
+    // MergeList(la, lb, lc);
+    // cout << "合并后的lc元素为:" << endl;
+    // lc.Traverse(Print);
+    // cout << endl;
+    // cout << "lc大小为:" << lc.Length() << endl;
 
     // // Test LinkList
     // LinkList<int> linkList;
@@ -116,6 +149,9 @@ int main()
     //      << "赋值操作后该新线性表元素为:" << endl;
     // linkList1.Traverse(Print);
     // cout << endl;
+
+    // Test Algorithm->Josephus && SimpleCircLinkList
+    Josephus(8, 3);
 
     // // Test LinkStack
     // LinkStack<int> stack;
@@ -157,28 +193,28 @@ int main()
     // queue.Traverse(Print);
     // cout << endl;
 
-    // Test CircularQueue
-    CircularQueue<int> queue(5);
-    queue.InQueue(1);
-    queue.InQueue(2);
-    queue.InQueue(3);
-    queue.InQueue(4);
-    queue.InQueue(5);
-    cout << "当前队列元素为:" << endl;
-    queue.Traverse(Print);
-    cout << endl;
-    cout << "队列长度为:" << queue.Length() << endl;
-    int c = 0;
-    queue.OutQueue(c);
-    cout << "元素出队后:" << endl;
-    queue.Traverse(Print);
-    cout << endl;
-    queue.OutQueue(c);
-    cout << "元素再次出队后:" << endl;
-    queue.Traverse(Print);
-    cout << endl;
+    // // Test CircularQueue
+    // CircularQueue<int> queue(5);
+    // queue.InQueue(1);
+    // queue.InQueue(2);
+    // queue.InQueue(3);
+    // queue.InQueue(4);
+    // // queue.InQueue(5);
+    // cout << "当前队列元素为:" << endl;
+    // queue.Traverse(Print);
+    // cout << endl;
+    // cout << "队列长度为:" << queue.Length() << endl;
+    // int c = 0;
+    // queue.OutQueue(c);
+    // cout << "元素出队后:" << endl;
+    // queue.Traverse(Print);
+    // cout << endl;
+    // queue.OutQueue(c);
+    // cout << "元素再次出队后:" << endl;
+    // queue.Traverse(Print);
+    // cout << endl;
 
-    // // Test Alg.h/Match
+    // // Test Algorithm->Match
     // // char *s = "{a*[c+d*(e+f)]";  // 不推荐
     // char s[8] = "{[]a}ss"; // C++推荐字符串表示方法：字符数组，用字符串赋初值时，数组大小要比字符串大1
     // char ss[16] = "{a*[b+c*(e-f])}";
