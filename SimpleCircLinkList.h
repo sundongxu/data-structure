@@ -1,5 +1,5 @@
-#ifndef SIMPLE_CIRC_LINKLIST_H
-#define SIMPLE_CIRC_LINKLIST_H
+#ifndef SIMPLE_CIRC_LINK_LIST_H
+#define SIMPLE_CIRC_LINK_LIST_H
 
 #include "Constant.h"
 #include "Node.h"
@@ -211,6 +211,7 @@ SimpleCircLinkList<ElemType>::SimpleCircLinkList(const SimpleCircLinkList<ElemTy
 {
     // 操作结果：复制构造，从无到有
     head = new Node<ElemType>; // 头指针空间申请
+    head->next = head;         // 完成Init()里面做的事情！
     int copyLength = copy.Length();
     ElemType tmp;
     for (int curPosition = 1; curPosition <= copyLength; curPosition++)
@@ -238,4 +239,4 @@ SimpleCircLinkList<ElemType> &SimpleCircLinkList<ElemType>::operator=(const Simp
     return *this;
 }
 
-#endif // SIMPLE_CIRC_LINKLIST_H
+#endif // SIMPLE_CIRC_LINK_LIST_H

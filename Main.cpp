@@ -8,6 +8,7 @@
 #include "SqList.h"
 #include "SimpleLinkList.h"
 #include "SimpleCircLinkList.h"
+#include "SimpleDbLinkList.h"
 #include "LinkList.h"
 #include "LinkStack.h"
 #include "LinkQueue.h"
@@ -48,41 +49,41 @@ int main()
     // cout << "Test assert!" << endl;
 
     // // Test SimpleLinkList
-    // SimpleLinkList<int> simpleLinkList;
-    // simpleLinkList.Insert(1, 1);
-    // simpleLinkList.Insert(2, 2);
-    // simpleLinkList.Insert(3, 3);
-    // cout << "当前简单线性表元素为:" << endl;
-    // simpleLinkList.Traverse(Print);
+    // SimpleLinkList<int> list;
+    // list.Insert(1, 1);
+    // list.Insert(2, 2);
+    // list.Insert(3, 3);
+    // cout << "当前线性表元素为:" << endl;
+    // list.Traverse(Print);
     // cout << endl
     //      << "请输入想删除的元素位置:" << endl;
     // int posToDelete, tmp;
     // cin >> posToDelete;
-    // simpleLinkList.Delete(posToDelete, tmp);
-    // cout << "删除元素后，简单线性表元素为:" << endl;
-    // simpleLinkList.Traverse(Print);
+    // list.Delete(posToDelete, tmp);
+    // cout << "删除元素后，线性表元素为:" << endl;
+    // list.Traverse(Print);
     // cout << endl
     //      << "请输入想插入的元素位置和元素值:" << endl;
     // int posToInsert, tmp1;
     // cin >> posToInsert >> tmp1;
-    // simpleLinkList.Insert(posToInsert, tmp1);
-    // cout << "插入元素后，简单线性表元素为:" << endl;
-    // simpleLinkList.Traverse(Print);
+    // list.Insert(posToInsert, tmp1);
+    // cout << "插入元素后，线性表元素为:" << endl;
+    // list.Traverse(Print);
     // cout << endl
-    //      << "由原简单线性表复制构造得到的新简单线性表元素为:" << endl;
-    // SimpleLinkList<int> copyLinkList(simpleLinkList); // 复制构造
-    // copyLinkList.Traverse(Print);
-    // SimpleLinkList<int> linkList1;
-    // linkList1.Insert(1, 11);
-    // linkList1.Insert(2, 22);
-    // linkList1.Insert(3, 33);
+    //      << "由原线性表复制构造得到的新线性表元素为:" << endl;
+    // SimpleLinkList<int> cpList(list); // 复制构造
+    // cpList.Traverse(Print);
+    // SimpleLinkList<int> list2;
+    // list2.Insert(1, 11);
+    // list2.Insert(2, 22);
+    // list2.Insert(3, 33);
     // cout << endl
-    //      << "新简单线性表元素为:" << endl;
-    // linkList1.Traverse(Print);
-    // linkList1 = simpleLinkList; // 赋值运算
+    //      << "新线性表元素为:" << endl;
+    // list2.Traverse(Print);
+    // list2 = list; // 赋值运算
     // cout << endl
-    //      << "赋值操作后该新简单线性表元素为:" << endl;
-    // linkList1.Traverse(Print);
+    //      << "赋值操作后该新线性表元素为:" << endl;
+    // list2.Traverse(Print);
     // cout << endl;
 
     // // Test Algorithm->MergeList
@@ -113,45 +114,108 @@ int main()
     // cout << "lc大小为:" << lc.Length() << endl;
 
     // // Test LinkList
-    // LinkList<int> linkList;
-    // linkList.Insert(1, 11);
-    // linkList.Insert(2, 22);
-    // linkList.Insert(3, 33);
+    // LinkList<int> list;
+    // list.Insert(1, 1);
+    // list.Insert(2, 2);
+    // list.Insert(3, 3);
     // cout << "当前线性表元素为:" << endl;
-    // linkList.Traverse(Print);
+    // list.Traverse(Print);
     // cout << endl
     //      << "请输入想删除的元素位置:" << endl;
     // int posToDelete, tmp;
     // cin >> posToDelete;
-    // linkList.Delete(posToDelete, tmp);
+    // list.Delete(posToDelete, tmp);
     // cout << "删除元素后，线性表元素为:" << endl;
-    // linkList.Traverse(Print);
+    // list.Traverse(Print);
     // cout << endl
     //      << "请输入想插入的元素位置和元素值:" << endl;
     // int posToInsert, tmp1;
     // cin >> posToInsert >> tmp1;
-    // linkList.Insert(posToInsert, tmp1);
+    // list.Insert(posToInsert, tmp1);
     // cout << "插入元素后，线性表元素为:" << endl;
-    // linkList.Traverse(Print);
+    // list.Traverse(Print);
     // cout << endl
     //      << "由原线性表复制构造得到的新线性表元素为:" << endl;
-    // LinkList<int> copyLinkList(linkList); // 复制构造
-    // copyLinkList.Traverse(Print);
-    // LinkList<int> linkList1;
-    // linkList1.Insert(1, 111);
-    // linkList1.Insert(2, 222);
-    // linkList1.Insert(3, 333);
+    // LinkList<int> cpList(list); // 复制构造
+    // cpList.Traverse(Print);
+    // LinkList<int> list2;
+    // list2.Insert(1, 11);
+    // list2.Insert(2, 22);
+    // list2.Insert(3, 33);
     // cout << endl
     //      << "新线性表元素为:" << endl;
-    // linkList1.Traverse(Print);
-    // linkList1 = linkList; // 赋值运算
+    // list2.Traverse(Print);
+    // list2 = list; // 赋值运算
     // cout << endl
     //      << "赋值操作后该新线性表元素为:" << endl;
-    // linkList1.Traverse(Print);
+    // list2.Traverse(Print);
     // cout << endl;
 
-    // Test Algorithm->Josephus && SimpleCircLinkList
-    Josephus(8, 3);
+    // // Test Algorithm->Josephus && SimpleCircLinkList
+    // Josephus(8, 3);
+
+    // // Test Algorithm->Decompose
+    // SimpleLinkList<char> la;
+    // SimpleCircLinkList<char> letter;
+    // SimpleCircLinkList<char> digit;
+    // SimpleCircLinkList<char> other;
+    // la.Insert(1, '1');
+    // la.Insert(2, '*');
+    // la.Insert(3, '2');
+    // la.Insert(4, 'a');
+    // la.Insert(5, '#');
+    // la.Insert(6, 'b');
+    // la.Insert(7, '3');
+    // la.Insert(8, '@');
+    // la.Insert(9, 'c');
+    // Decompose(la, letter, digit, other);
+    // cout << "letter元素为:" << endl;
+    // letter.Traverse(Print);
+    // cout << endl
+    //      << "digit元素为:" << endl;
+    // digit.Traverse(Print);
+    // cout << endl
+    //      << "other元素为:" << endl;
+    // other.Traverse(Print);
+    // cout << endl;
+
+    // // Test SimpleDbLinkList
+    // SimpleDbLinkList<int> list;
+    // list.Insert(1, 1);
+    // list.Insert(2, 2);
+    // list.Insert(3, 3);
+    // cout << "当前线性表元素为:" << endl;
+    // list.Traverse(Print);
+    // cout << endl
+    //      << "请输入想删除的元素位置:" << endl;
+    // int posToDelete, tmp;
+    // cin >> posToDelete;
+    // list.Delete(posToDelete, tmp);
+    // cout << "删除元素后，线性表元素为:" << endl;
+    // list.Traverse(Print);
+    // cout << endl
+    //      << "请输入想插入的元素位置和元素值:" << endl;
+    // int posToInsert, tmp1;
+    // cin >> posToInsert >> tmp1;
+    // list.Insert(posToInsert, tmp1);
+    // cout << "插入元素后，线性表元素为:" << endl;
+    // list.Traverse(Print);
+    // cout << endl
+    //      << "由原线性表复制构造得到的新线性表元素为:" << endl;
+    // SimpleDbLinkList<int> cpList(list); // 复制构造
+    // cpList.Traverse(Print);
+    // SimpleDbLinkList<int> list2;
+    // list2.Insert(1, 11);
+    // list2.Insert(2, 22);
+    // list2.Insert(3, 33);
+    // cout << endl
+    //      << "新线性表元素为:" << endl;
+    // list2.Traverse(Print);
+    // list2 = list; // 赋值运算
+    // cout << endl
+    //      << "赋值操作后该新线性表元素为:" << endl;
+    // list2.Traverse(Print);
+    // cout << endl;
 
     // // Test LinkStack
     // LinkStack<int> stack;

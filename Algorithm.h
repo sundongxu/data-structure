@@ -34,31 +34,33 @@
         将两递增有序链表合并成完整递增有序链表
     （5）Josephus(int n. int m):
         约瑟夫问题
-    （5）SimpleIndex(String &T, String &P, int pos):
+    （6）Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other)
+        将线性表la中的元素分为字母、数字和其它字符三类分别放入三个单循环链表
+    （7）SimpleIndex(String &T, String &P, int pos):
         简单字符串匹配算法
-    （6）FrontRearIndex(String &T, String &P, int pos):
+    （8）FrontRearIndex(String &T, String &P, int pos):
         首尾字符串匹配算法
-    （7）KMPIndex(String &T, String &P, int pos):
+    （9）KMPIndex(String &T, String &P, int pos):
         KMP字符串匹配算法
-    （8）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （10）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树前序遍历非递归算法
-    （9）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （11）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树中序遍历非递归算法
-    （10）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （12）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树后序遍历非递归算法
-    （11）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （13）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图深度优先遍历算法
-    （12）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （14）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图广度优先遍历算法
-    （13）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
+    （15）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
         Prim最小生成树算法
-    （14）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
+    （16）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
         Kruskal最小生成树算法
-    （15）TopSort(const AdjMatrixDirGraph<ElemType> &g):
+    （17）TopSort(const AdjMatrixDirGraph<ElemType> &g):
         拓扑排序算法
-    （16）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
+    （18）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
         关键路径算法
-    （17）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
+    （19）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
         迪杰斯特拉 单源最短路径算法
 */
 
@@ -75,6 +77,9 @@ void MergeList(const SimpleLinkList<ElemType> &la, const SimpleLinkList<ElemType
 
 // 约瑟夫问题
 void Josephus(int n, int m);
+
+// 线性表元素分类
+void Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other);
 
 // 栈实现字符串中括号配对
 bool Match(char *s);
@@ -313,6 +318,31 @@ void Josephus(int n, int m)
     la.GetElem(1, winner); // 剩下的人序号为1，为优胜者
     cout << endl
          << "优胜者:" << winner << endl;
+}
+
+void Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other)
+{
+    // 初始条件：la是单链表，数据域存放一个字符
+    // 操作结果：构造3个带头结点的单循环链表表示的线性表，使每个表中只含有同一类字符
+    char ch;
+    int laLength = la.Length();
+    for (int position = 1; position <= laLength; position++)
+    {
+        // 取出la中的元素
+        la.GetElem(position, ch);
+        if (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z'))
+        {
+            letter.Insert(1, ch); // ch为字母，插入letter中
+        }
+        else if ('0' <= ch && ch <= '9')
+        {
+            digit.Insert(1, ch); // ch为数字，插入digit中
+        }
+        else
+        {
+            other.Insert(1, ch); // ch为其它字符，插入在other中
+        }
+    }
 }
 
 bool Match(char *s)
