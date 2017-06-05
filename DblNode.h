@@ -16,7 +16,8 @@ class DblNode
     // 构造函数：
     DblNode();                                                                                      // 无数据的构造函数
     DblNode(ElemType item, DblNode<ElemType> *linkBack = NULL, DblNode<ElemType> *linkNext = NULL); // 已知数据域和指针域建立结构
-    ~DblNode();                                                                                     // 析构函数
+    ~DblNode();
+    // DblNode<ElemType> &operator=(const DblNode<ElemType> &copy);  // 重载赋值运算符                                                                          // 析构函数
 };
 
 // 结点类的实现部分
