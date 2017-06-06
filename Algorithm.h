@@ -7,6 +7,7 @@
 #include "SqList.h"
 #include "SimpleLinkList.h"
 #include "SimpleCircLinkList.h"
+#include "CLargeInt.h"
 #include "LinkStack.h"
 #include "String.h"
 #include "BinTree.h"
@@ -36,31 +37,33 @@
         约瑟夫问题
     （6）Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other)
         将线性表la中的元素分为字母、数字和其它字符三类分别放入三个单循环链表
-    （7）SimpleIndex(String &T, String &P, int pos):
+    （7）Factorial(unsigned int iNum):
+        计算正大数的阶乘
+    （8）SimpleIndex(String &T, String &P, int pos):
         简单字符串匹配算法
-    （8）FrontRearIndex(String &T, String &P, int pos):
+    （9）FrontRearIndex(String &T, String &P, int pos):
         首尾字符串匹配算法
-    （9）KMPIndex(String &T, String &P, int pos):
+    （10）KMPIndex(String &T, String &P, int pos):
         KMP字符串匹配算法
-    （10）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （11）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树前序遍历非递归算法
-    （11）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （12）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树中序遍历非递归算法
-    （12）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （13）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树后序遍历非递归算法
-    （13）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （14）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图深度优先遍历算法
-    （14）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （15）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图广度优先遍历算法
-    （15）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
+    （16）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
         Prim最小生成树算法
-    （16）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
+    （17）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
         Kruskal最小生成树算法
-    （17）TopSort(const AdjMatrixDirGraph<ElemType> &g):
+    （18）TopSort(const AdjMatrixDirGraph<ElemType> &g):
         拓扑排序算法
-    （18）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
+    （19）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
         关键路径算法
-    （19）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
+    （20）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
         迪杰斯特拉 单源最短路径算法
 */
 
@@ -83,6 +86,9 @@ void Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter,
 
 // 栈实现字符串中括号配对
 bool Match(char *s);
+
+// 计算正大数的阶乘
+CLargeInt Factorial(unsigned int iNum);
 
 // 简单字符串模式匹配算法
 int SimpleIndex(const String &T, const String &P, int pos = 0);
@@ -408,6 +414,20 @@ bool Match(char *s)
         }
     }
     return tmpS.Empty();
+}
+
+CLargeInt Factorial(unsigned int iNum)
+{
+    // 操作结果：计算正大数的阶乘
+    CLargeInt tmpLargeInt(1);
+
+    for (unsigned int i = 1; i <= iNum; i++)
+    {
+        // 连乘求阶乘
+        tmpLargeInt = tmpLargeInt * CLargeInt(i);
+    }
+
+    return tmpLargeInt;
 }
 
 // 简单字符串模式匹配算法

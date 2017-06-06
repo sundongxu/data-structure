@@ -12,7 +12,7 @@
 #include "CircLinkList.h"
 #include "SimpleDbLinkList.h"
 #include "DbLinkList.h"
-#include "LinkList.h"
+#include "CLargeInt.h"
 #include "LinkStack.h"
 #include "LinkQueue.h"
 #include "CircularQueue.h"
@@ -182,43 +182,49 @@ int main()
     // other.Traverse(Print);
     // cout << endl;
 
-    // Test DbLinkList
-    DbLinkList<int> list;
-    list.Insert(1, 1);
-    list.Insert(2, 2);
-    list.Insert(3, 3);
-    cout << "当前线性表元素为:" << endl;
-    list.Traverse(Print);
-    cout << endl
-         << "请输入想删除的元素位置:" << endl;
-    int posToDelete, tmp;
-    cin >> posToDelete;
-    list.Delete(posToDelete, tmp);
-    cout << "删除元素后，线性表元素为:" << endl;
-    list.Traverse(Print);
-    cout << endl
-         << "请输入想插入的元素位置和元素值:" << endl;
-    int posToInsert, tmp1;
-    cin >> posToInsert >> tmp1;
-    list.Insert(posToInsert, tmp1);
-    cout << "插入元素后，线性表元素为:" << endl;
-    list.Traverse(Print);
-    cout << endl
-         << "由原线性表复制构造得到的新线性表元素为:" << endl;
-    DbLinkList<int> cpList(list); // 复制构造
-    cpList.Traverse(Print);
-    DbLinkList<int> list2;
-    list2.Insert(1, 11);
-    list2.Insert(2, 22);
-    list2.Insert(3, 33);
-    cout << endl
-         << "新线性表元素为:" << endl;
-    list2.Traverse(Print);
-    list2 = list; // 赋值运算
-    cout << endl
-         << "赋值操作后该新线性表元素为:" << endl;
-    list2.Traverse(Print);
-    cout << endl;
+    // // Test DbLinkList
+    // DbLinkList<int> list;
+    // list.Insert(1, 1);
+    // list.Insert(2, 2);
+    // list.Insert(3, 3);
+    // cout << "当前线性表元素为:" << endl;
+    // list.Traverse(Print);
+    // cout << endl
+    //      << "请输入想删除的元素位置:" << endl;
+    // int posToDelete, tmp;
+    // cin >> posToDelete;
+    // list.Delete(posToDelete, tmp);
+    // cout << "删除元素后，线性表元素为:" << endl;
+    // list.Traverse(Print);
+    // cout << endl
+    //      << "请输入想插入的元素位置和元素值:" << endl;
+    // int posToInsert, tmp1;
+    // cin >> posToInsert >> tmp1;
+    // list.Insert(posToInsert, tmp1);
+    // cout << "插入元素后，线性表元素为:" << endl;
+    // list.Traverse(Print);
+    // cout << endl
+    //      << "由原线性表复制构造得到的新线性表元素为:" << endl;
+    // DbLinkList<int> cpList(list); // 复制构造
+    // cpList.Traverse(Print);
+    // DbLinkList<int> list2;
+    // list2.Insert(1, 11);
+    // list2.Insert(2, 22);
+    // list2.Insert(3, 33);
+    // cout << endl
+    //      << "新线性表元素为:" << endl;
+    // list2.Traverse(Print);
+    // list2 = list; // 赋值运算
+    // cout << endl
+    //      << "赋值操作后该新线性表元素为:" << endl;
+    // list2.Traverse(Print);
+    // cout << endl;
+
+    // // Test CLargeInt & Factorial
+    // CLargeInt c(1234);
+    // CLargeInt c1(22);
+    // cout << c * c1 << endl;
+    // cout << Factorial(8) << endl;
 
     // // Test LinkStack
     // LinkStack<int> stack;
