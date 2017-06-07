@@ -1,5 +1,5 @@
-#ifndef C_LARGE_INT
-#define C_LARGE_INT
+#ifndef C_LARGE_INT_H
+#define C_LARGE_INT_H
 
 #include <iostream>
 #include <cstring>
@@ -175,4 +175,4 @@ std::ostream &operator<<(std::ostream &outStream, const CLargeInt &outLargeInt)
     return outStream;
 }
 
-#endif // C_LARGE_INT
+#endif // C_LARGE_INT_H
