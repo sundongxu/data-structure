@@ -4,6 +4,7 @@
 #include "Constant.h"
 #include "Node.h"
 
+// 循环链表类
 template <class ElemType>
 class CircLinkList
 {

@@ -1,5 +1,5 @@
-#ifndef ALG_H
-#define ALG_H
+#ifndef ALGORITHM_H
+#define ALGORITHM_H
 
 #include <stddef.h>
 #include "Constant.h"
@@ -1348,4 +1348,4 @@ void ShortestPathFloyd(const AdjListDirNetwork<ElemType, WeightType> &net, int *
     }
 }
 
-#endif // ALG_H
+#endif // ALGORITHM_H

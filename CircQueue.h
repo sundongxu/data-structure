@@ -1,10 +1,11 @@
-#ifndef CIRCULAR_QUEUE_H
-#define CIRCULAR_QUEUE_H
+#ifndef CIRC_QUEUE_H
+#define CIRC_QUEUE_H
 
 #include "Constant.h"
 
+// 循环队列类
 template <class ElemType>
-class CircularQueue
+class CircQueue
 {
   protected:
     int front, rear; // 队头(指向第一个数据元素)、队尾(指向最后一个数据元素的下一个位置)
@@ -17,8 +18,8 @@ class CircularQueue
 
   public:
     // 抽象数据类型方法声明及重载编译系统默认方法声明：
-    CircularQueue(int size = DEFAULT_SIZE); // 构造函数
-    virtual ~CircularQueue();               // 析构函数
+    CircQueue(int size = DEFAULT_SIZE); // 构造函数
+    virtual ~CircQueue();               // 析构函数
     int Length() const;                     // 求队列长度
 
     bool Empty() const;                                                      // 判断队列是否为空
@@ -27,26 +28,26 @@ class CircularQueue
     int OutQueue(ElemType &e);                                               // 出队操作
     int InQueue(const ElemType &e);                                          // 入队操作
     int GetHead(ElemType &e) const;                                          // 取队头操作
-    CircularQueue(const CircularQueue<ElemType> &copy);                      // 拷贝构造函数
-    CircularQueue<ElemType> &operator=(const CircularQueue<ElemType> &copy); // 赋值运算符重载
+    CircQueue(const CircQueue<ElemType> &copy);                      // 拷贝构造函数
+    CircQueue<ElemType> &operator=(const CircQueue<ElemType> &copy); // 赋值运算符重载
 };
 
 template <class ElemType>
-bool CircularQueue<ElemType>::Full() const
+bool CircQueue<ElemType>::Full() const
 {
     // 操作结果：如队列已满，则返回true，否则返回false
     return Length() == maxSize - 1; // 浪费一个元素空间，当front在rear的下一个位置时队列为满
 }
 
 template <class ElemType>
-void CircularQueue<ElemType>::Init()
+void CircQueue<ElemType>::Init()
 {
     // 操作结果：初始化队列
     rear = front = 0;
 }
 
 template <class ElemType>
-CircularQueue<ElemType>::CircularQueue(int size)
+CircQueue<ElemType>::CircQueue(int size)
 {
     // 操作结果：构造一个最大元素个数为size的空循环队列
     maxSize = size;               // 最大元素个数
@@ -55,35 +56,35 @@ CircularQueue<ElemType>::CircularQueue(int size)
 }
 
 template <class ElemType>
-CircularQueue<ElemType>::~CircularQueue()
+CircQueue<ElemType>::~CircQueue()
 {
     // 操作结果：销毁队列
     delete[] elem;
 }
 
 template <class ElemType>
-int CircularQueue<ElemType>::Length() const
+int CircQueue<ElemType>::Length() const
 {
     // 操作结果：返回队列长度
     return (rear - front + maxSize) % maxSize;
 }
 
 template <class ElemType>
-bool CircularQueue<ElemType>::Empty() const
+bool CircQueue<ElemType>::Empty() const
 {
     // 操作结果：如队列为空，则返回true，否则返回false
     return rear == front;
 }
 
 template <class ElemType>
-void CircularQueue<ElemType>::Clear()
+void CircQueue<ElemType>::Clear()
 {
     // 操作结果：清空队列
     rear = front = 0;
 }
 
 template <class ElemType>
-void CircularQueue<ElemType>::Traverse(void (*Visit)(ElemType &))
+void CircQueue<ElemType>::Traverse(void (*Visit)(ElemType &))
 {
     // 操作结果：依次对队列的每个元素调用函数(*Visit)
     for (int curPosition = front; curPosition != rear; curPosition = (curPosition + 1) % maxSize)
@@ -94,7 +95,7 @@ void CircularQueue<ElemType>::Traverse(void (*Visit)(ElemType &))
 }
 
 template <class ElemType>
-int CircularQueue<ElemType>::OutQueue(ElemType &e)
+int CircQueue<ElemType>::OutQueue(ElemType &e)
 {
     // 操作结果：如果队列非空，那么删除队头元素，并用e返回其值，函数返回SUCCESS，否则函数返回UNDER_FLOW
     if (!Empty())
@@ -112,7 +113,7 @@ int CircularQueue<ElemType>::OutQueue(ElemType &e)
 }
 
 template <class ElemType>
-int CircularQueue<ElemType>::InQueue(const ElemType &e)
+int CircQueue<ElemType>::InQueue(const ElemType &e)
 {
     // 操作结果：如果队列已满，返回OVER_FLOW，否则插入元素e为新的队尾，返回SUCCESS
     if (Full())
@@ -130,7 +131,7 @@ int CircularQueue<ElemType>::InQueue(const ElemType &e)
 }
 
 template <class ElemType>
-int CircularQueue<ElemType>::GetHead(ElemType &e) const
+int CircQueue<ElemType>::GetHead(ElemType &e) const
 {
     // 操作结果：如果队列为空，那么用e返回队头元素，函数返回SUCCESS，否则函数返UNDER_FLOW
     if (!Empty())
@@ -147,7 +148,7 @@ int CircularQueue<ElemType>::GetHead(ElemType &e) const
 }
 
 template <class ElemType>
-CircularQueue<ElemType>::CircularQueue(const CircularQueue<ElemType> &copy)
+CircQueue<ElemType>::CircQueue(const CircQueue<ElemType> &copy)
 {
     // 操作结果：由队列copy构造新队列——复制构造函数
     front = copy.front; // 复制队头位置
@@ -160,7 +161,7 @@ CircularQueue<ElemType>::CircularQueue(const CircularQueue<ElemType> &copy)
 }
 
 template <class ElemType>
-CircularQueue<ElemType> &CircularQueue<ElemType>::operator=(const CircularQueue<ElemType> &copy)
+CircQueue<ElemType> &CircQueue<ElemType>::operator=(const CircQueue<ElemType> &copy)
 {
     // 操作结果：将队列copy赋值给当前队列——赋值运算符重载
     if (&copy != this)
@@ -176,4 +177,4 @@ CircularQueue<ElemType> &CircularQueue<ElemType>::operator=(const CircularQueue<
     return *this;
 }
 
-#endif // CIRCULAR_QUEUE_H
+#endif // Circ_QUEUE_H

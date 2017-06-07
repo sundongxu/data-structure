@@ -15,7 +15,11 @@
 #include "CLargeInt.h"
 #include "LinkStack.h"
 #include "LinkQueue.h"
-#include "CircularQueue.h"
+#include "CircQueue.h"
+#include "MinPriorityLinkQueue.h"
+#include "MaxPriorityLinkQueue.h"
+#include "MinPriorityCircQueue.h"
+#include "MaxPriorityCircQueue.h"
 #include "BinTree.h"
 #include "String.h"
 #include "AdjMatrixDirGraph.h"
@@ -266,29 +270,8 @@ int main()
     // queue.Traverse(Print);
     // cout << endl;
 
-    // // Test CircularQueue
-    // CircularQueue<int> queue(5);
-    // queue.InQueue(1);
-    // queue.InQueue(2);
-    // queue.InQueue(3);
-    // queue.InQueue(4);
-    // // queue.InQueue(5);
-    // cout << "当前队列元素为:" << endl;
-    // queue.Traverse(Print);
-    // cout << endl;
-    // cout << "队列长度为:" << queue.Length() << endl;
-    // int c = 0;
-    // queue.OutQueue(c);
-    // cout << "元素出队后:" << endl;
-    // queue.Traverse(Print);
-    // cout << endl;
-    // queue.OutQueue(c);
-    // cout << "元素再次出队后:" << endl;
-    // queue.Traverse(Print);
-    // cout << endl;
-
-    // // Test CircularQueue
-    // CircularQueue<int> queue(5);
+    // // Test CircQueue
+    // CircQueue<int> queue(5);
     // queue.InQueue(1);
     // queue.InQueue(2);
     // queue.InQueue(3);
@@ -307,6 +290,26 @@ int main()
     // cout << "元素再次出队后:" << endl;
     // queue.Traverse(Print);
     // cout << endl;
+
+    // Test MinPriorityLinkQueue && MaxPriorityLinkQueue & MinPriorityCircQueue & MaxPriorityCircQueue
+    MinPriorityCircQueue<int> queue(5);
+    queue.InQueue(5);
+    queue.InQueue(4);
+    queue.InQueue(3);
+    queue.InQueue(2);
+    // queue.InQueue(1);
+    cout << "当前队列元素为:" << endl;
+    queue.Traverse(Print);
+    cout << endl;
+    int c = 0;
+    queue.OutQueue(c);
+    cout << "元素出队后:" << endl;
+    queue.Traverse(Print);
+    cout << endl;
+    queue.OutQueue(c);
+    cout << "元素再次出队后:" << endl;
+    queue.Traverse(Print);
+    cout << endl;
 
     // // Test Algorithm->Match
     // // char *s = "{a*[c+d*(e+f)]";  // 不推荐
@@ -337,8 +340,8 @@ int main()
     //     cout<<"sss匹配失败!"<<endl;
     // }
 
-    // Test Algorithm->yanghuiTriangle
-    yanghuiTriangle(8);
+    // // Test Algorithm->yanghuiTriangle
+    // yanghuiTriangle(8);
 
     // // Test BinTree
     // BinTree<char> tree('A'); // 构造根结点数据域为A的二叉树
