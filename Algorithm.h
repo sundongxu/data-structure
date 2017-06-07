@@ -29,41 +29,43 @@
         计算集合差集lc
     （2）Adjust(SqList &la):
         将顺序表元素分离(奇数放左边，偶数放右边)
-    （3）Match(char *s):
-        栈实现字符串中括号配对
-    （4）MergeList(const SimpleLinkList<ElemType> &la, const SimpleLinkList<ElemType> &lb, SimpleLinkList<ElemType> &lc):
+    （3）MergeList(const SimpleLinkList<ElemType> &la, const SimpleLinkList<ElemType> &lb, SimpleLinkList<ElemType> &lc):
         将两递增有序链表合并成完整递增有序链表
-    （5）Josephus(int n. int m):
+    （4）Josephus(int n. int m):
         约瑟夫问题
-    （6）Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other)
+    （5）Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other)
         将线性表la中的元素分为字母、数字和其它字符三类分别放入三个单循环链表
-    （7）Factorial(unsigned int iNum):
+    （6）Factorial(unsigned int iNum):
         计算正大数的阶乘
-    （8）SimpleIndex(String &T, String &P, int pos):
+    （7）Match(char *s):
+        栈实现字符串中括号配对
+    （8）yanghuiTriangle(int n):
+        队列实现杨辉三角
+    （9）SimpleIndex(String &T, String &P, int pos):
         简单字符串匹配算法
-    （9）FrontRearIndex(String &T, String &P, int pos):
+    （10）FrontRearIndex(String &T, String &P, int pos):
         首尾字符串匹配算法
-    （10）KMPIndex(String &T, String &P, int pos):
+    （11）KMPIndex(String &T, String &P, int pos):
         KMP字符串匹配算法
-    （11）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （12）NonRecurPreOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树前序遍历非递归算法
-    （12）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （13）NonRecurInOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树中序遍历非递归算法
-    （13）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
+    （14）NonRecurPostOrder(BinTree<ElemType> &bt, void (*Visit)(ElemType &)):
         二叉树后序遍历非递归算法
-    （14）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （15）DFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图深度优先遍历算法
-    （15）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
+    （16）BFSTraverse(AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(ElemType &):
         无向图广度优先遍历算法
-    （16）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
+    （17）MiniSpanTreePrim(const AdjMatrixUndirNetwork<ElemType, WeightType> &net, int u0):
         Prim最小生成树算法
-    （17）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
+    （18）MiniSpanTreeKruskal(const AdjListUndirNetwork<ElemType, WeightType> &net):
         Kruskal最小生成树算法
-    （18）TopSort(const AdjMatrixDirGraph<ElemType> &g):
+    （19）TopSort(const AdjMatrixDirGraph<ElemType> &g):
         拓扑排序算法
-    （19）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
+    （20）CriticalPath(const AdjMatrixDirNetwork<ElemType, WeightType> &net):
         关键路径算法
-    （20）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
+    （21）ShortestPathDIJ(const AdjMatrixDirNetwork<ElemType, WeightType> &net, int v0, int *path, WeightType *dist)
         迪杰斯特拉 单源最短路径算法
 */
 
@@ -84,11 +86,14 @@ void Josephus(int n, int m);
 // 线性表元素分类
 void Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter, SimpleCircLinkList<char> &digit, SimpleCircLinkList<char> &other);
 
+// 计算正大数的阶乘
+CLargeInt Factorial(unsigned int iNum);
+
 // 栈实现字符串中括号配对
 bool Match(char *s);
 
-// 计算正大数的阶乘
-CLargeInt Factorial(unsigned int iNum);
+// 队列实现杨辉三角
+void yanghuiTriangle(int n);
 
 // 简单字符串模式匹配算法
 int SimpleIndex(const String &T, const String &P, int pos = 0);
@@ -351,6 +356,48 @@ void Decompose(const SimpleLinkList<char> &la, SimpleCircLinkList<char> &letter,
     }
 }
 
+CLargeInt Factorial(unsigned int iNum)
+{
+    // 操作结果：计算正大数的阶乘
+    CLargeInt tmpLargeInt(1);
+
+    for (unsigned int i = 1; i <= iNum; i++)
+    {
+        // 连乘求阶乘
+        tmpLargeInt = tmpLargeInt * CLargeInt(i);
+    }
+
+    return tmpLargeInt;
+}
+
+// 简单字符串模式匹配算法
+int SimpleIndex(const String &T, const String &P, int pos)
+{
+    // 操作结果：查找模式串P第一次在目标串T中从第pos个字符开始出现的位置
+    int i = pos, j = 0; // i为T的下标，j为P的下标
+    while (i < T.Length() && j < P.Length())
+    {
+        if (T[i] == P[j])
+        {
+            // 当前对应位置字符匹配成功，继续比较后续字符
+            i++;
+            j++;
+        }
+        else
+        {
+            // 匹配失败，指针回退，重新开始新的匹配
+            i = i - j + 1; // 已经匹配成功的位数为j位，退回到本次失败匹配开始的位置，再往后移动一位
+            j = 0;
+        }
+    }
+
+    if (j >= P.Length())
+    {
+        return i - j; // 匹配成功，返回目标串T中模式串P第一个字符出现的下标位置
+    }
+    return -1; // 匹配失败
+}
+
 bool Match(char *s)
 {
     // 操作结果：判别用字符串s表示的表达式中大、中、小括号是否配对出现
@@ -416,46 +463,33 @@ bool Match(char *s)
     return tmpS.Empty();
 }
 
-CLargeInt Factorial(unsigned int iNum)
+void yanghuiTriangle(int n)
 {
-    // 操作结果：计算正大数的阶乘
-    CLargeInt tmpLargeInt(1);
+    // 操作结果：显示三角形的第1行~第n行
+    LinkQueue<int> q;
+    int s, t;
 
-    for (unsigned int i = 1; i <= iNum; i++)
+    q.InQueue(1);
+    q.InQueue(1);           // 存储杨辉三角形的第1行的两个元素
+    cout << 1 << "\t" << 1; // 显示杨辉三角性的第1行
+    for (int i = 2; i <= n; i++)
     {
-        // 连乘求阶乘
-        tmpLargeInt = tmpLargeInt * CLargeInt(i);
-    }
-
-    return tmpLargeInt;
-}
-
-// 简单字符串模式匹配算法
-int SimpleIndex(const String &T, const String &P, int pos)
-{
-    // 操作结果：查找模式串P第一次在目标串T中从第pos个字符开始出现的位置
-    int i = pos, j = 0; // i为T的下标，j为P的下标
-    while (i < T.Length() && j < P.Length())
-    {
-        if (T[i] == P[j])
+        // 依次显示杨辉三角形的第2行~第n行
+        cout << endl;
+        q.InQueue(1);      // 第i行的第1个元素的值为1
+        cout << 1 << "\t"; // 显示第i行第1个元素的值
+        q.OutQueue(s);     // 取第i-1行第1个元素的值
+        for (int j = 2; j <= i; j++)
         {
-            // 当前对应位置字符匹配成功，继续比较后续字符
-            i++;
-            j++;
+            q.OutQueue(t);         // 取第i-1行第j个元素的值
+            q.InQueue(s + t);      // s+t为第i行第j个元素的值
+            cout << s + t << "\t"; // 显示第i行第j个元素的值
+            s = t;
         }
-        else
-        {
-            // 匹配失败，指针回退，重新开始新的匹配
-            i = i - j + 1; // 已经匹配成功的位数为j位，退回到本次失败匹配开始的位置，再往后移动一位
-            j = 0;
-        }
+        q.InQueue(1); // 第i行第i+1个元素的值为1
+        cout << 1;
     }
-
-    if (j >= P.Length())
-    {
-        return i - j; // 匹配成功，返回目标串T中模式串P第一个字符出现的下标位置
-    }
-    return -1; // 匹配失败
+    cout << endl;
 }
 
 // 首尾字符串模式匹配算法

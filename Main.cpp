@@ -337,6 +337,9 @@ int main()
     //     cout<<"sss匹配失败!"<<endl;
     // }
 
+    // Test Algorithm->yanghuiTriangle
+    yanghuiTriangle(8);
+
     // // Test BinTree
     // BinTree<char> tree('A'); // 构造根结点数据域为A的二叉树
     // tree.InsertLeftChild(tree.GetRoot(), 'B');
