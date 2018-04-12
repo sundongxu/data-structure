@@ -2,7 +2,8 @@
 #define SORT_H
 
 #include "LinkList.h"
-
+#include <cmath>
+using namespace std;
 /*
     基本排序算法及功能如下：
     （1）BubbleSort(ElemType elem[], int n):
@@ -119,12 +120,12 @@ void SimpleSelectionSort(ElemType elem[], int n)
                 lowIndex = j; // 存储当前寻找到的最小元素的下标
             }
         }
-        Swap(elem[i], elem[lowIndex]); // 本轮循环找到的最小元素放到第i个位置
+        swap(elem[i], elem[lowIndex]); // 本轮循环找到的最小元素放到第i个位置
     }
 }
 
 template <class ElemType>
-int Partition(ElemType elem[], int high, int low)
+int Partition(ElemType elem[], int low, int high)
 {
     // 操作结果：交换elem[low...high]中的元素，使枢轴移动到适当位置，要求在枢轴之前的元素
     // 不大于枢轴，在枢轴之后的元素不小于枢轴，并返回枢轴的位置
@@ -139,14 +140,14 @@ int Partition(ElemType elem[], int high, int low)
         }
         // 跳出循环条件：elem[high]<elem[low]
 
-        Swap(elem[low], elem[high]); // 此时elem[high]>elem[low]，必然满足下面while循环条件
+        swap(elem[low], elem[high]); // 此时elem[high]>elem[low]，必然满足下面while循环条件
 
         while (low < high && elem[low] <= elem[high])
         {
             // elem[high]为枢轴，使low左边的元素不大于elem[high]
             low++;
         }
-        Swap(elem[low], elem[high]);
+        swap(elem[low], elem[high]);
     }
     return low; // 返回枢轴位置
 }
@@ -204,7 +205,7 @@ void ShellSort(ElemType elem[], int n, int inc[], int t)
 template <class ElemType>
 void SimpleMerge(ElemType elem[], int low, int mid, int high)
 {
-    // 操作结果：将有序子序列elem[low,...mid]和elem[mid+1,...,midhigh]归并为新的有序序列elem[low,...,high]
+    // 操作结果：将有序子序列elem[low,...mid]和elem[mid+1,...,high]归并为新的有序序列elem[low,...,high]
     // 真的做了比较和排序！
     ElemType *tmpElem = new ElemType[high + 1];
 
@@ -318,8 +319,8 @@ void MergeSortHelp(ElemType elem[], ElemType tmpElem[], int low, int high)
     if (low < high)
     {
         int mid = (low + high) / 2;
-        MergeSortHelp(elem, low, mid);
-        MergeSortHelp(elem, mid + 1, high);
+        MergeSortHelp(elem, tmpElem, low, mid);
+        MergeSortHelp(elem, tmpElem, mid + 1, high);
         Merge(elem, tmpElem, low, mid, high);
     }
 }
@@ -329,7 +330,7 @@ void MergeSort(ElemType elem[], int n)
 {
     // 操作结果：对elem进行归并排序
     ElemType *tmpElem = new ElemType[n]; // 提前申请好这部分临时空间，免得每次都要新申请
-    Merge(elem, tmpElem, 0, n - 1);
+    MergeSortHelp(elem, tmpElem, 0, n - 1);
     delete[] tmpElem;
 }
 
@@ -351,7 +352,7 @@ void SiftAdjust(ElemType elem[], int low, int high)
             // 已经成为最大堆，跳出循环
             break;
         }
-        Swap(elem[f], elem[i]);
+        swap(elem[f], elem[i]);
         f = i;
     }
 }
@@ -370,7 +371,7 @@ void HeapSort(ElemType elem[], int n)
     for (i = n - 1; i > 0; --i)
     {
         // 第i趟堆排序
-        Swap(elem[i], elem[0]);     // 将堆顶元素和当前未经排序的子序列elem[0,...,i]中最后一个元素交换
+        swap(elem[i], elem[0]);     // 将堆顶元素和当前未经排序的子序列elem[0,...,i]中最后一个元素交换
         SiftAdjust(elem, 0, i - 1); // 将elem[0,...,i-1]重新调整为最大堆
     }
 }

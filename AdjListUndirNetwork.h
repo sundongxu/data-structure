@@ -19,7 +19,7 @@ protected:
 
   // 辅助函数
   void DestroyHelp();                                                             // 销毁有向网，释放有向网占用的空间
-  int IndexHelp(const LinkList<AdjListNetworkEdge<WeightType> > *la, int v) const; // 定位顶点v在邻接表中的位置
+  int IndexHelp(const LinkList<AdjListNetworkEdge<WeightType>> *la, int v) const; // 定位顶点v在邻接表中的位置
   bool IsVertex(int v) const;                                                     // 判断顶点是否存在
   bool IsEdge(int v1, int v2) const;                                              // 判断边是否存在
 
@@ -58,7 +58,7 @@ void AdjListUndirNetwork<ElemType, WeightType>::DestroyHelp()
 }
 
 template <class ElemType, class WeightType>
-int AdjListUndirNetwork<ElemType, WeightType>::IndexHelp(const LinkList<AdjListNetworkEdge<WeightType> > *la, int v) const
+int AdjListUndirNetwork<ElemType, WeightType>::IndexHelp(const LinkList<AdjListNetworkEdge<WeightType>> *la, int v) const
 {
   // 操作结果：定位顶点v在邻接链表中的位置
   int curPos, adjVex;
@@ -287,8 +287,8 @@ void AdjListUndirNetwork<ElemType, WeightType>::InsertEdge(int v1, int v2, Weigh
     if (isV1NoAdj && isV2NoAdj)
     {
       // v1、v2的邻接表均为空
-      vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType> >();
-      vexTable[v2].adjLink = new LinkList<AdjListNetworkEdge<WeightType> >();
+      vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType>>();
+      vexTable[v2].adjLink = new LinkList<AdjListNetworkEdge<WeightType>>();
       AdjListNetworkEdge<WeightType> tmpEdge1(v2, w);
       vexTable[v1].adjLink->Insert(1, tmpEdge1);
       AdjListNetworkEdge<WeightType> tmpEdge2(v1, w);
@@ -297,7 +297,7 @@ void AdjListUndirNetwork<ElemType, WeightType>::InsertEdge(int v1, int v2, Weigh
     else if (isV1NoAdj)
     {
       // 仅v1的邻接表为空
-      vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType> >();
+      vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType>>();
       AdjListNetworkEdge<WeightType> tmpEdge(v2, w);
       vexTable[v1].adjLink->Insert(1, tmpEdge);
       int indexV1 = IndexHelp(vexTable[v2].adjLink, v1);
@@ -310,7 +310,7 @@ void AdjListUndirNetwork<ElemType, WeightType>::InsertEdge(int v1, int v2, Weigh
     else if (isV2NoAdj)
     {
       // 仅v2的邻接表为空
-      vexTable[v2].adjLink = new LinkList<AdjListNetworkEdge<WeightType> >();
+      vexTable[v2].adjLink = new LinkList<AdjListNetworkEdge<WeightType>>();
       AdjListNetworkEdge<WeightType> tmpEdge(v1, w);
       vexTable[v2].adjLink->Insert(1, tmpEdge);
       int indexV2 = IndexHelp(vexTable[v1].adjLink, v2);

@@ -11,11 +11,11 @@ class AdjListNetworkVexNode
 public:
   // 数据成员
   ElemType data;                                     // 数据元素值
-  LinkList<AdjListNetworkEdge<WeightType> > *adjLink; // 邻接链表
+  LinkList<AdjListNetworkEdge<WeightType>> *adjLink; // 邻接链表
 
   // 构造函数
   AdjListNetworkVexNode();                                                                    // 无参数的构造函数
-  AdjListNetworkVexNode(ElemType item, LinkList<AdjListNetworkEdge<WeightType> > *adj = NULL); // 构造顶点数据为item，指向邻接链表的指针为adj的结构
+  AdjListNetworkVexNode(ElemType item, LinkList<AdjListNetworkEdge<WeightType>> *adj = NULL); // 构造顶点数据为item，指向邻接链表的指针为adj的结构
   void SetData(const int d);
 };
 
@@ -27,7 +27,7 @@ AdjListNetworkVexNode<ElemType, WeightType>::AdjListNetworkVexNode()
 }
 
 template <class ElemType, class WeightType>
-AdjListNetworkVexNode<ElemType, WeightType>::AdjListNetworkVexNode(ElemType item, LinkList<AdjListNetworkEdge<WeightType> > *adj)
+AdjListNetworkVexNode<ElemType, WeightType>::AdjListNetworkVexNode(ElemType item, LinkList<AdjListNetworkEdge<WeightType>> *adj)
 {
   // 操作结果：构造一个数据值为item，邻接表为adj的邻接表网的结点
   data = item;

@@ -18,7 +18,7 @@ protected:
 
   // 辅助函数
   void DestroyHelp();                                                             // 销毁有向网，释放有向网占用的空间
-  int IndexHelp(const LinkList<AdjListNetworkEdge<WeightType> > *la, int v) const; // 定位顶点v在邻接表中的位置
+  int IndexHelp(const LinkList<AdjListNetworkEdge<WeightType>> *la, int v) const; // 定位顶点v在邻接表中的位置
   bool IsVertex(int v) const;                                                     // 判断顶点是否存在
   bool IsEdge(int v1, int v2) const;                                              // 判断边是否存在
 
@@ -57,7 +57,7 @@ void AdjListDirNetwork<ElemType, WeightType>::DestroyHelp()
 }
 
 template <class ElemType, class WeightType>
-int AdjListDirNetwork<ElemType, WeightType>::IndexHelp(const LinkList<AdjListNetworkEdge<WeightType> > *la, int v) const
+int AdjListDirNetwork<ElemType, WeightType>::IndexHelp(const LinkList<AdjListNetworkEdge<WeightType>> *la, int v) const
 {
   // 操作结果：定位顶点v在邻接链表中的位置
   int curPos, adjVex;
@@ -280,7 +280,7 @@ void AdjListDirNetwork<ElemType, WeightType>::InsertEdge(int v1, int v2, WeightT
     if (vexTable[v1].adjLink == NULL)
     {
       // v1的邻接表为空，没有任何邻接点，初始情况，怎么给adjLink初始化呢? -> new一个LinkList对象给它
-      vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType> >();
+      vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType>>();
       AdjListNetworkEdge<WeightType> tmpEdge(v2, w);
       vexTable[v1].adjLink->Insert(1, tmpEdge);
     }
