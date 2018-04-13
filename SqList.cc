@@ -1,5 +1,6 @@
 #include "SqList.h"
 
+// 线性顺序表类的实现部分
 template <class ElemType>
 bool SqList<ElemType>::Full() const
 {

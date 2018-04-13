@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <stddef.h>
+#include <cstddef>
 
 // 链表结点类
 template <class ElemType>
@@ -13,7 +13,7 @@ public:
   Node<ElemType> *next; // 指针域
 
   Node();
-  Node(ElemType item, Node<ElemType> *link = NULL); // 已知数据域和指针域构造节点
+  Node(ElemType item, Node<ElemType> *link = nullptr); // 已知数据域和指针域构造节点
   virtual ~Node();
 };
 

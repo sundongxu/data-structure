@@ -1,10 +1,11 @@
 #include "Node.h"
 
+// 单链表结点类的实现部分
 template <class ElemType>
 Node<ElemType>::Node()
 {
     // 操作结果：创建空结点
-    next = NULL;
+    next = nullptr;
 }
 
 template <class ElemType>
@@ -19,6 +20,6 @@ template <class ElemType>
 Node<ElemType>::~Node()
 {
     // 操作结果：析构函数，释放指针域
-    // next->next = NULL;
+    // next->next = nullptr;
     delete next;
 }

@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// 最小堆类
 template <class ElemType>
 class MinHeap
 {

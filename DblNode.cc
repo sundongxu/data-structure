@@ -1,11 +1,12 @@
 #include "DblNode.h"
-// 结点类的实现部分
+
+// 双向链表结点类的实现部分
 template <class ElemType>
 DblNode<ElemType>::DblNode()
 {
     // 操作结果：构造指针域为空的结点
-    back = NULL;
-    next = NULL;
+    back = nullptr;
+    next = nullptr;
 }
 
 template <class ElemType>

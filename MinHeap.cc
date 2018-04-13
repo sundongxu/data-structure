@@ -1,4 +1,6 @@
 #include "MinHeap.h"
+
+// 最小堆类的实现部分
 template <class ElemType>
 MinHeap<ElemType>::MinHeap(int size)
 {
@@ -152,6 +154,7 @@ std::ostream &operator<<(std::ostream &os, MinHeap<ElemType> &heap)
 
 int main()
 {
+    // 最小堆成员函数测试
     int arr[8] = {53, 17, 78, 9, 45, 65, 87, 23};
     MinHeap<int> heap1(arr, 8); // 数组参数的构造函数
     cout << "heap1:" << endl;

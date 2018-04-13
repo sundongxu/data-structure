@@ -1,5 +1,6 @@
 #include "CircLinkList.h"
 
+// 循环链表类的实现部分
 template <class ElemType>
 Node<ElemType> *CircLinkList<ElemType>::GetElemPtr(int position) const
 {

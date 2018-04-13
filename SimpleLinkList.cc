@@ -1,5 +1,6 @@
 #include "SimpleLinkList.h"
 
+// 简单线性链表类的实现部分
 template <class ElemType>
 Node<ElemType> *SimpleLinkList<ElemType>::GetElemPtr(int position) const
 {

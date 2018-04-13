@@ -32,4 +32,5 @@ protected:
   // 辅助函数
   void Init(); // 初始化线性表
 };
+
 #endif // SIMPLE_LINKLIST_H
