@@ -168,7 +168,7 @@ String HuffmanTree<CharType, WeightType>::EnCode(CharType ch)
     }
   }
   // throw Error("非法字符，无法编码");
-  return NULL;
+  return nullptr;
 }
 
 template <class CharType, class WeightType>

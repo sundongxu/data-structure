@@ -27,7 +27,7 @@ Node<ElemType> *SimpleCircLinkList<ElemType>::GetElemPtr(int position) const
     else
     {
         // 查找失败
-        return NULL;
+        return nullptr;
     }
 }
 
@@ -51,7 +51,7 @@ SimpleCircLinkList<ElemType>::~SimpleCircLinkList()
 {
     // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
     Clear();           // 释放非头结点空间
-    head->next = NULL; // 这步很关键啊！！！
+    head->next = nullptr; // 这步很关键啊！！！
     delete head;       // 释放头结点空间
 }
 
@@ -169,7 +169,7 @@ int SimpleCircLinkList<ElemType>::Delete(int position, ElemType &e)
         tmpPtr->next = nextPtr->next;
         e = nextPtr->data;
 
-        nextPtr->next = NULL; // 这一步非常关键，为什么？
+        nextPtr->next = nullptr; // 这一步非常关键，为什么？
 
         delete nextPtr;
         return SUCCESS;

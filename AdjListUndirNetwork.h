@@ -1,7 +1,6 @@
 #ifndef ADJ_LIST_UNDIR_NETWORK_H
 #define ADJ_LIST_UNDIR_NETWORK_H
 
-#include <stddef.h>
 #include "Constant.h"
 #include "AdjListNetworkVexNode.h"
 #include "AdjListNetworkEdge.h"
@@ -103,8 +102,8 @@ bool AdjListUndirNetwork<ElemType, WeightType>::IsEdge(int v1, int v2) const
   // 操作结果：判断边(v1, v2)是否存在
   if (IsVertex(v1) && IsVertex(v2))
   {
-    bool isV1NoAdj = (vexTable[v1].adjLink == NULL),
-         isV2NoAdj = (vexTable[v2].adjLink == NULL);
+    bool isV1NoAdj = (vexTable[v1].adjLink == nullptr),
+         isV2NoAdj = (vexTable[v2].adjLink == nullptr);
     if (!isV1NoAdj && !isV2NoAdj)
     {
       // 若边存在都都存在，检查两者任意一个邻接表均可
@@ -132,7 +131,7 @@ AdjListUndirNetwork<ElemType, WeightType>::AdjListUndirNetwork(ElemType es[], in
   tag = new int[vexNum];
   for (int v = 0; v < vexNum; v++)
   {
-    // vexTable[v] = new AdjListNetworkVexNode<ElemType, WeightType>(es[v], NULL); // 这个邻接表到哪里去创建？？？————插入边的时候！
+    // vexTable[v] = new AdjListNetworkVexNode<ElemType, WeightType>(es[v], nullptr); // 这个邻接表到哪里去创建？？？————插入边的时候！
     vexTable[v].SetData(es[v]);
     tag[v] = UNVISITED; // 顶点全部初始化为未访问
   }
@@ -225,7 +224,7 @@ int AdjListUndirNetwork<ElemType, WeightType>::FirstAdjVex(int v) const
   // 操作结果：返回顶点v的第一个邻接点
   if (IsVertex(v))
   {
-    if (vexTable[v].adjLink == NULL)
+    if (vexTable[v].adjLink == nullptr)
     {
       // 空邻接链表，无邻接点
       return -1;
@@ -251,7 +250,7 @@ int AdjListUndirNetwork<ElemType, WeightType>::NextAdjVex(int v1, int v2) const
   {
     if (v1 != v2)
     {
-      if (vexTable[v1].adjLink != NULL)
+      if (vexTable[v1].adjLink != nullptr)
       {
         int curPos = IndexHelp(vexTable[v1].adjLink, v2); // 取出v2在邻接表中的位置
         if (curPos < vexTable[v1].adjLink->Length())
@@ -281,8 +280,8 @@ void AdjListUndirNetwork<ElemType, WeightType>::InsertEdge(int v1, int v2, Weigh
   else if (IsVertex(v1) && IsVertex(v2))
   {
     // v1的邻接表为空，不意味着v2的邻接表就一定为空啊！
-    bool isV1NoAdj = (vexTable[v1].adjLink == NULL),
-         isV2NoAdj = (vexTable[v2].adjLink == NULL);
+    bool isV1NoAdj = (vexTable[v1].adjLink == nullptr),
+         isV2NoAdj = (vexTable[v2].adjLink == nullptr);
 
     if (isV1NoAdj && isV2NoAdj)
     {

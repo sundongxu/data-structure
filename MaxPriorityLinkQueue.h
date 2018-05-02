@@ -20,7 +20,7 @@ int MaxPriorityLinkQueue<ElemType>::InQueue(const ElemType &e)
     Node<ElemType> *curPtr = LinkQueue<ElemType>::front->next; // 指向当前结点
     Node<ElemType> *curPrePtr = LinkQueue<ElemType>::front;    // 指向当前结点的前驱结点
 
-    while (curPtr != NULL && curPtr->data >= e)
+    while (curPtr != nullptr && curPtr->data >= e)
     {
         // curPtr与curPrePtr都指向下一元素
         curPrePtr = curPtr;

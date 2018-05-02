@@ -41,8 +41,8 @@ LinkList<ElemType>::~LinkList()
     // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
     Clear();     // 释放非头结点空间
     delete head; // 释放头结点空间
-    head = NULL;
-    curPtr = NULL; // 在Clear中其占用的空间已被释放
+    head = nullptr;
+    curPtr = nullptr; // 在Clear中其占用的空间已被释放
     curPosition = 0;
     count = 0;
 }
@@ -78,7 +78,7 @@ template <class ElemType>
 void LinkList<ElemType>::Traverse(void (*Visit)(ElemType &))
 {
     // 操作结果：遍历线性表
-    for (Node<ElemType> *tmpPtr = head->next; tmpPtr != NULL; tmpPtr = tmpPtr->next)
+    for (Node<ElemType> *tmpPtr = head->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
     {
         (*Visit)(tmpPtr->data);
     }
@@ -158,9 +158,9 @@ int LinkList<ElemType>::Delete(int position, ElemType &e)
         }
         count--;
         // 关键一步：在释放nextPtr指向结点内存空间前，先把它的全部指针域置空
-        nextPtr->next = NULL; // 记住这个坑！
+        nextPtr->next = nullptr; // 记住这个坑！
         delete nextPtr;       // 释放被删结点
-        nextPtr = NULL;
+        nextPtr = nullptr;
         return SUCCESS;
     }
 }

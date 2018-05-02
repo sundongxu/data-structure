@@ -35,7 +35,7 @@ template <class ElemType>
 void InThreadBinTree<ElemType>::InThreadHelp(ThreadBinTreeNode<ElemType> *cur, ThreadBinTreeNode<ElemType> *&pre)
 {
     // 操作结果：中序线索化以cur为根的二叉树，pre表示cur的前驱
-    if (cur != NULL)
+    if (cur != nullptr)
     {
         // 按中序遍历方式进行线索化
         if (cur->leftTag == CHILD_PTR)
@@ -43,7 +43,7 @@ void InThreadBinTree<ElemType>::InThreadHelp(ThreadBinTreeNode<ElemType> *cur, T
             InThreadHelp(cur->leftChild, pre); // 线索化左子树
         }
 
-        if (cur->leftChild == NULL)
+        if (cur->leftChild == nullptr)
         {
             // cur无左孩子，加线索
             cur->leftChild = pre;      // cur前驱为pre
@@ -55,13 +55,13 @@ void InThreadBinTree<ElemType>::InThreadHelp(ThreadBinTreeNode<ElemType> *cur, T
             cur->leftTag = CHILD_PTR; // 孩子指针标志
         }
 
-        if (pre != NULL && pre->rightChild == NULL)
+        if (pre != nullptr && pre->rightChild == nullptr)
         {
             // pre无右孩子，加线索
             pre->rightChild = cur;      // pre后继为cur
             pre->rightTag = THREAD_PTR; // 线索标志
         }
-        else if (pre != NULL)
+        else if (pre != nullptr)
         {
             // cur有右孩子，修改标志，可省去，rightTag默认为CHILD_TAG
             pre->rightTag = CHILD_PTR; // 孩子指针标志
@@ -116,9 +116,9 @@ template <class ElemType>
 void InThreadBinTree<ElemType>::InThread()
 {
     // 操作结果：中序线索化二叉树
-    ThreadBinTreeNode<ElemType> *pre = NULL; // 开始线索化时前驱为空
+    ThreadBinTreeNode<ElemType> *pre = nullptr; // 开始线索化时前驱为空
     InThreadHelp(root, pre);                 // 中序线索化以root为根的二叉树
-    if (pre->rightChild == NULL)
+    if (pre->rightChild == nullptr)
     {
         // pre为中序序列中最后一个结点
         pre->rightTag = THREAD_PTR; // 如无右孩子，则加线索标记
@@ -129,14 +129,14 @@ template <class ElemType>
 void InThreadBinTree<ElemType>::InOrder(void (*Visit)(ElemType &))
 {
     // 操作结果：二叉树的中序遍历
-    if (root != NULL)
+    if (root != nullptr)
     {
         ThreadBinTreeNode<ElemType> *cur = root; // 从根开始遍历
         while (cur->leftTag == CHILD_PTR)        // 查找最左侧的结点，此结点为中序序列的第一个结点
         {
             cur = cur->leftChild;
         }
-        while (cur != NULL)
+        while (cur != nullptr)
         {
             (*Visit)(cur->data); // 访问当前结点
             if (cur->rightTag == THREAD_PTR)

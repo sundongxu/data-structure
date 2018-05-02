@@ -23,7 +23,7 @@ public:
 
   // 构造函数：
   ThreadBinTreeNode(); // 无参构造函数
-  ThreadBinTreeNode(const ElemType &val, ThreadBinTreeNode<ElemType> *lChild = NULL, ThreadBinTreeNode<ElemType> *rChild = NULL,
+  ThreadBinTreeNode(const ElemType &val, ThreadBinTreeNode<ElemType> *lChild = nullptr, ThreadBinTreeNode<ElemType> *rChild = nullptr,
                     PointerTagType leftTag = CHILD_PTR, PointerTagType rightTag = CHILD_PTR);
 };
 

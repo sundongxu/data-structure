@@ -102,7 +102,7 @@ bool AdjListDirNetwork<ElemType, WeightType>::IsEdge(int v1, int v2) const
   // 操作结果：判断边(v1, v2)是否存在
   if (IsVertex(v1) && IsVertex(v2))
   {
-    if (vexTable[v1].adjLink != NULL) // v1的邻接表不为空，再去找v2在其中的位置
+    if (vexTable[v1].adjLink != nullptr) // v1的邻接表不为空，再去找v2在其中的位置
     {
       // 先判断顶点序号合法性
       int indexV2 = IndexHelp(vexTable[v1].adjLink, v2); // 获取v2在v1的邻接表中出现的位置
@@ -128,7 +128,7 @@ AdjListDirNetwork<ElemType, WeightType>::AdjListDirNetwork(ElemType es[], int ve
   tag = new int[vexNum];
   for (int v = 0; v < vexNum; v++)
   {
-    // vexTable[v] = new AdjListNetworkVexNode<ElemType, WeightType>(es[v], NULL); // 这个邻接表到哪里去创建？？？————插入边的时候！
+    // vexTable[v] = new AdjListNetworkVexNode<ElemType, WeightType>(es[v], nullptr); // 这个邻接表到哪里去创建？？？————插入边的时候！
     vexTable[v].data = es[v]; // 顶点内存空间已分配，只需给数据域复制
     tag[v] = UNVISITED;       // 顶点全部初始化为未访问
   }
@@ -221,7 +221,7 @@ int AdjListDirNetwork<ElemType, WeightType>::FirstAdjVex(int v) const
   // 操作结果：返回顶点v的第一个邻接点
   if (IsVertex(v))
   {
-    if (vexTable[v].adjLink == NULL)
+    if (vexTable[v].adjLink == nullptr)
     {
       // 空邻接链表，无邻接点
       return -1;
@@ -247,7 +247,7 @@ int AdjListDirNetwork<ElemType, WeightType>::NextAdjVex(int v1, int v2) const
   {
     if (v1 != v2)
     {
-      if (vexTable[v1].adjLink != NULL)
+      if (vexTable[v1].adjLink != nullptr)
       {
         int curPos = IndexHelp(vexTable[v1].adjLink, v2); // 取出v2在邻接表中的位置
         if (curPos < vexTable[v1].adjLink->Length())
@@ -277,7 +277,7 @@ void AdjListDirNetwork<ElemType, WeightType>::InsertEdge(int v1, int v2, WeightT
   else if (IsVertex(v1) && IsVertex(v2))
   {
     // v1与v2都存在，先要判断v1的邻接表是否存在
-    if (vexTable[v1].adjLink == NULL)
+    if (vexTable[v1].adjLink == nullptr)
     {
       // v1的邻接表为空，没有任何邻接点，初始情况，怎么给adjLink初始化呢? -> new一个LinkList对象给它
       vexTable[v1].adjLink = new LinkList<AdjListNetworkEdge<WeightType>>();

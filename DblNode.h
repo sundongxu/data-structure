@@ -1,8 +1,6 @@
 #ifndef DBL_NODE_H
 #define DBL_NODE_H
 
-#include <cstddef>
-
 // 双向链表结点类
 template <class ElemType>
 class DblNode

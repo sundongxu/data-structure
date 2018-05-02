@@ -1,7 +1,7 @@
 #ifndef KRUSKAL_FOREST_H
 #define KRUSKAL_FOREST_H
 
-#include <stddef.h> // 包含NULL定义，实际NULL==0
+#include <stddef.h> // 包含nullptr定义，实际nullptr==0
 #include "Constant.h"
 
 // Kruskal算法实现，森林类
@@ -34,10 +34,10 @@ KruskalForest::KruskalForest(int num)
 KruskalForest::~KruskalForest()
 {
   // 操作结果：销毁Kruskal森林，主要是释放treeNo数组空间
-  if (treeNo != NULL)
+  if (treeNo != nullptr)
   {
     delete[] treeNo;
-    treeNo = NULL;
+    treeNo = nullptr;
   }
 }
 

@@ -27,7 +27,7 @@ DblNode<ElemType> *SimpleDbLinkList<ElemType>::GetElemPtr(int position) const
     else
     {
         // 查找失败
-        return NULL;
+        return nullptr;
     }
 }
 
@@ -52,8 +52,8 @@ SimpleDbLinkList<ElemType>::~SimpleDbLinkList()
 {
     // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
     Clear();           // 释放非头结点空间
-    head->next = NULL; // 这步很关键啊！！！
-    head->back = NULL; // 这步很关键啊！！！
+    head->next = nullptr; // 这步很关键啊！！！
+    head->back = nullptr; // 这步很关键啊！！！
     delete head;       // 释放头结点空间
 }
 
@@ -154,9 +154,9 @@ int SimpleDbLinkList<ElemType>::Delete(int position, ElemType &e)
         tmpPtr->back->next = tmpPtr->next; // 修改向右的指针
         tmpPtr->next->back = tmpPtr->back; // 修改向左的指针
         e = tmpPtr->data;                  //用e返回被删结点元素值
-        tmpPtr->back = NULL;
-        tmpPtr->next = NULL;
-        delete tmpPtr; // 释放被删结点，肯定会有坑！tmpPtr->back = NULL, tmpPtr->next = NULL
+        tmpPtr->back = nullptr;
+        tmpPtr->next = nullptr;
+        delete tmpPtr; // 释放被删结点，肯定会有坑！tmpPtr->back = nullptr, tmpPtr->next = nullptr
         return SUCCESS;
     }
 }

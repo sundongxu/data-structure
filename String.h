@@ -47,7 +47,7 @@ bool operator>=(const String &first, const String &second);          // 重载�
 String::String()
 {
   // 操作结果：构造空串，有效字符数为0
-  strVal = NULL;
+  strVal = nullptr;
   length = 0;
 }
 
@@ -55,10 +55,10 @@ String::~String()
 {
   // 操作结果：释放字符串内存空间，之后将指针置空
   length = 0;
-  if (strVal != NULL)
+  if (strVal != nullptr)
   {
     delete strVal;
-    strVal = NULL;
+    strVal = nullptr;
   }
 }
 
@@ -195,7 +195,7 @@ int Index(const String &target, const String &pattern, int pos)
   const char *cTarget = target.CStr();
   const char *cPattern = pattern.CStr();
   const char *ptr = strstr(cTarget, cPattern);
-  if (ptr == NULL)
+  if (ptr == nullptr)
   {
     // 目标串中没找到pattern串，返回-1
     return -1;

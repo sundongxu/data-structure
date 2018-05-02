@@ -9,7 +9,7 @@ const int BUCKET_NUM = 10;
 
 struct ListNode
 {
-    explicit ListNode(int i = 0) : mData(i), mNext(NULL) {}
+    explicit ListNode(int i = 0) : mData(i), mNext(nullptr) {}
     ListNode *mNext;
     int mData;
 };
@@ -22,7 +22,7 @@ ListNode *insert(ListNode *head, int val)
     dummyNode.mNext = head;
     pre = &dummyNode;
     curr = head;
-    while (NULL != curr && curr->mData <= val)
+    while (nullptr != curr && curr->mData <= val)
     {
         pre = curr;
         curr = curr->mNext;
@@ -36,7 +36,7 @@ ListNode *Merge(ListNode *head1, ListNode *head2)
 {
     ListNode dummyNode;
     ListNode *dummy = &dummyNode;
-    while (NULL != head1 && NULL != head2)
+    while (nullptr != head1 && nullptr != head2)
     {
         if (head1->mData <= head2->mData)
         {
@@ -50,9 +50,9 @@ ListNode *Merge(ListNode *head1, ListNode *head2)
         }
         dummy = dummy->mNext;
     }
-    if (NULL != head1)
+    if (nullptr != head1)
         dummy->mNext = head1;
-    if (NULL != head2)
+    if (nullptr != head2)
         dummy->mNext = head2;
 
     return dummyNode.mNext;

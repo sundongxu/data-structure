@@ -94,7 +94,7 @@ bool AdjListDirGraph<ElemType>::IsEdge(int v1, int v2) const
   if (IsVertex(v1) && IsVertex(v2))
   {
     // 先判断顶点序号合法性
-    if (vexTable[v1].adjLink != NULL) // v1的邻接表不为空，再去找v2在其中的位置
+    if (vexTable[v1].adjLink != nullptr) // v1的邻接表不为空，再去找v2在其中的位置
     {
       int indexV2 = IndexHelp(vexTable[v1].adjLink, v2); // 获取v2在v1的邻接表中出现的位置
       if (indexV2 < vexTable[v1].adjLink->Length() + 1)
@@ -119,7 +119,7 @@ AdjListDirGraph<ElemType>::AdjListDirGraph(ElemType es[], int vertexNum)
   for (int v = 0; v < vexNum; v++)
   {
     // new返回的是指针！这里vexTable[v]不是一个指针了，而是一个对象！！！二维指针才能这么赋值
-    // vexTable[v] = new AdjListGraphVexNode<ElemType>(es[v], NULL);
+    // vexTable[v] = new AdjListGraphVexNode<ElemType>(es[v], nullptr);
     vexTable[v].data = es[v]; // 这个邻接表到哪里去创建？？？————插入边的时候！
     tag[v] = UNVISITED;       // 顶点全部初始化为未访问
   }
@@ -204,7 +204,7 @@ int AdjListDirGraph<ElemType>::FirstAdjVex(int v) const
   // 操作结果：返回顶点v的第一个邻接点
   if (IsVertex(v))
   {
-    if (vexTable[v].adjLink != NULL)
+    if (vexTable[v].adjLink != nullptr)
     {
       // 非空邻接链表，存在邻接点
       int adjVex;
@@ -223,7 +223,7 @@ int AdjListDirGraph<ElemType>::NextAdjVex(int v1, int v2) const
   {
     if (v1 != v2)
     {
-      if (vexTable[v1].adjLink != NULL)
+      if (vexTable[v1].adjLink != nullptr)
       {
         int curPos = IndexHelp(vexTable[v1].adjLink, v2); // 取出v2在邻接表中的位置
         if (curPos < vexTable[v1].adjLink->Length())
@@ -252,7 +252,7 @@ void AdjListDirGraph<ElemType>::InsertEdge(int v1, int v2)
   if (IsVertex(v1) && IsVertex(v2))
   {
     // v1与v2都存在，先判断v1的邻接表是否存在
-    if (vexTable[v1].adjLink == NULL)
+    if (vexTable[v1].adjLink == nullptr)
     {
       // v1的邻接表为空，没有任何邻接点，初始情况，怎么给adjLink初始化呢? -> new一个LinkList对象给它
       vexTable[v1].adjLink = new LinkList<int>();

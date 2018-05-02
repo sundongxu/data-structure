@@ -1,7 +1,6 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
-#include <stddef.h>
 #include "Constant.h"
 #include "cstring"
 #include "SqList.h"
@@ -601,13 +600,13 @@ void NonRecurPreOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
     BinTreeNode<ElemType> *cur = r; // 当前结点
     LinkStack<BinTreeNode<ElemType> *> s;
 
-    while (cur != NULL)
+    while (cur != nullptr)
     {
         // 处理当前结点
         (*Visit)(cur->data); // 访问当前结点，本算法唯一的访问结点操作
         s.Push(cur);         //当前结点入栈
 
-        if (cur->leftChild != NULL)
+        if (cur->leftChild != nullptr)
         {
             // cur的先序序列后继为cur->leftChild
             cur = cur->leftChild;
@@ -620,7 +619,7 @@ void NonRecurPreOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
                 // 栈为空时自动跳出While循环
                 s.Pop(cur); // 出栈
                 cur = cur->rightChild;
-                if (cur != NULL)
+                if (cur != nullptr)
                 {
                     // 若有右孩子则跳出循环
                     break;
@@ -630,7 +629,7 @@ void NonRecurPreOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
         else
         {
             // 栈s为空，无后继，将cur置空，结束最外层循环
-            cur = NULL;
+            cur = nullptr;
         }
     }
 }
@@ -647,16 +646,16 @@ template <class ElemType>
 BinTreeNode<ElemType> *GoFarLeft(BinTreeNode<ElemType> *r, LinkStack<BinTreeNode<ElemType> *> &s)
 {
     // 操作结果：返回以r为根的二叉树的最左侧的结点，并将搜索过程中的结点加入到栈s中
-    if (r == NULL)
+    if (r == nullptr)
     {
         // 空二叉树
-        return NULL;
+        return nullptr;
     }
     else
     {
         // 非空二叉树
         BinTreeNode<ElemType> *cur = r;
-        while (cur->leftChild != NULL)
+        while (cur->leftChild != nullptr)
         {
             s.Push(cur); // 把有左孩子的结点全部入栈
             cur = cur->leftChild;
@@ -674,10 +673,10 @@ void NonRecurInOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
 
     cur = GoFarLeft<ElemType>(cur, s); // cur为以r为根的二叉树的最左侧的结点
 
-    while (cur != NULL)
+    while (cur != nullptr)
     {
         (*Visit)(cur->data);
-        if (cur->rightChild != NULL)
+        if (cur->rightChild != nullptr)
         {
             // 右孩子不为空，cur的中序序列后继为右子树的最左侧结点
             cur = GoFarLeft<ElemType>(cur->rightChild, s);
@@ -690,7 +689,7 @@ void NonRecurInOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
         else
         {
             // 栈s为空，无后继，cur置空
-            cur = NULL;
+            cur = nullptr;
         }
     }
 }
@@ -707,15 +706,15 @@ template <class ElemType>
 ModiNode<ElemType> *GoFarLeft(BinTreeNode<ElemType> *r, LinkStack<ModiNode<ElemType> *> &s)
 {
     // 操作结果：返回以r为根的二叉树的最左侧的结点，并将搜索过程中的被修改后的结点加入到栈s中
-    if (r == NULL)
+    if (r == nullptr)
     {
-        return NULL;
+        return nullptr;
     }
     else
     {
         BinTreeNode<ElemType> *cur = r;
         ModiNode<ElemType> *newPtr;
-        while (cur->leftChild != NULL)
+        while (cur->leftChild != nullptr)
         {
             // cur存在左孩子，则cur移向左孩子
             newPtr = new ModiNode<ElemType>;
@@ -740,10 +739,10 @@ void NonRecurPostOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
     LinkStack<ModiNode<ElemType> *> s;
 
     cur = GoFarLeft<ElemType>(r, s); // cur为以r为根的二叉树的最左侧的被搜索结点
-    while (cur != NULL)
+    while (cur != nullptr)
     {
         // 处理当前结点
-        if (cur->node->rightChild == NULL || cur->rightSubTreeVisited)
+        if (cur->node->rightChild == nullptr || cur->rightSubTreeVisited)
         {
             // 如当前结点无右子树或右子树已被访问
             (*Visit)(cur->node->data); // 访问当前结点
@@ -756,7 +755,7 @@ void NonRecurPostOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
             else
             {
                 // 栈为空，遍历完毕
-                cur = NULL;
+                cur = nullptr;
             }
         }
         else

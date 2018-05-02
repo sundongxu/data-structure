@@ -1,7 +1,6 @@
 #ifndef LINK_QUEUE_H
 #define LINK_QUEUE_H
 
-#include <stddef.h>
 #include "Constant.h"
 #include "Node.h"
 
@@ -12,7 +11,7 @@ class LinkQueue
 protected:
   // 链队列实现的数据成员：
   Node<ElemType> *front, *rear; // 队头队尾指针
-  // 队头指针指向头结点（无数据域，指针域指向队列的第一个含有效数据域的结点），队尾指针则真的指向队列的最后一个含有效数据域的结点）,即有rear->next==NULL
+  // 队头指针指向头结点（无数据域，指针域指向队列的第一个含有效数据域的结点），队尾指针则真的指向队列的最后一个含有效数据域的结点）,即有rear->next==nullptr
 
   // 辅助函数：
   void Init(); // 初始化队列
@@ -56,9 +55,9 @@ LinkQueue<ElemType>::~LinkQueue()
 template <class ElemType>
 int LinkQueue<ElemType>::Length() const
 {
-  // 操作结果：返回队列长度，即有效数据结点个数（怎么不用上尾结点？？？tmpPtr==NULL实际就是tmpPtr==rear->next）
+  // 操作结果：返回队列长度，即有效数据结点个数（怎么不用上尾结点？？？tmpPtr==nullptr实际就是tmpPtr==rear->next）
   int count = 0;
-  for (Node<ElemType> *tmpPtr = front->next; tmpPtr != NULL; tmpPtr = tmpPtr->next)
+  for (Node<ElemType> *tmpPtr = front->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
   {
     // 用tmpPtr依次指向每个结点,front->next是指队列的有效结点数要从队列第一个含有效数据域的结点开始算起
     count++;
@@ -88,7 +87,7 @@ template <class ElemType>
 void LinkQueue<ElemType>::Traverse(void (*Visit)(ElemType &))
 {
   // 操作结果：对队列的每个元素调用函数(*Visit)
-  for (Node<ElemType> *tmpPtr = front->next; tmpPtr != NULL; tmpPtr = tmpPtr->next)
+  for (Node<ElemType> *tmpPtr = front->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
   {
     // 将tmpPtr依次指向队列的各个元素
     (*Visit)(tmpPtr->data);
@@ -100,7 +99,7 @@ int LinkQueue<ElemType>::InQueue(const ElemType &e)
 {
   // 操作结果：数据域为e的新结点入队
   Node<ElemType> *tmpPtr = new Node<ElemType>(e);
-  if (tmpPtr == NULL)
+  if (tmpPtr == nullptr)
   {
     // 内存分配失败
     return OVER_FLOW;
@@ -134,7 +133,7 @@ int LinkQueue<ElemType>::OutQueue(ElemType &e)
     {
       rear = front; // 出队元素为队末元素，即出队前队中只有一个数据结点，此时应该将队尾指针指向front，否则之后队末结点空间被释放了，rear会变成野指针
     }
-    tmpPtr->next = NULL;
+    tmpPtr->next = nullptr;
     delete tmpPtr;
     return SUCCESS;
   }
@@ -170,7 +169,7 @@ LinkQueue<ElemType>::LinkQueue(const LinkQueue<ElemType> &copy)
   else
   {
     // copy非空，复制整个队列空间（全部结点）
-    for (Node<ElemType> *tmpPtr = copy.front->next; tmpPtr != NULL; tmpPtr = tmpPtr->next)
+    for (Node<ElemType> *tmpPtr = copy.front->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
     {
       // 对copy队列每个元素对当前队列作入队操作
       InQueue(tmpPtr->data);
@@ -185,7 +184,7 @@ LinkQueue<ElemType> &LinkQueue<ElemType>::operator=(const LinkQueue<ElemType> &c
   if (&copy != this)
   {
     Clear();
-    for (Node<ElemType> *tmpPtr = copy.front->next; tmpPtr != NULL; tmpPtr = tmpPtr->next)
+    for (Node<ElemType> *tmpPtr = copy.front->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
     {
       // 对copy队列每个元素对当前队列作入队操作
       InQueue(tmpPtr->data);

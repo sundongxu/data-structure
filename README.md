@@ -91,3 +91,151 @@
 |  Header  |  Implementation  |
 | :---: | :---: |
 |[**CircLinkList.h**](https://github.com/sundongxu/data-structure/blob/master/CircLinkList.h)|[**CircLinkList.cc**](https://github.com/sundongxu/data-structure/blob/master/CircLinkList.cc)|
+
+## 栈(Stack)
+--- 
+
+### 顺序栈(Sequential Stack)
+---
+
+### 链式栈(Linked Stack)
+---
+
+## 队列(Queue)
+---
+
+### 链式队列(Linked Queue)
+---
+
+### 循环队列(Circular Queue)
+---
+
+## 字符串(String)
+---
+
+## 树(Tree)
+---
+
+### 二叉树(Binary Tree)
+---
+
+#### 遍历(Traversal)
+
+1. 前序遍历(Preorder Traversal)
+- 递归
+
+- 非递归
+
+2. 中序遍历(Inorder Traversal)
+- 递归
+
+- 非递归
+
+3. 后序遍历(Postorder Traversal)
+- 递归
+
+- 非递归
+
+#### 线索二叉树(Thread Binary Tree)
+
+### 树(Tree) 
+---
+
+### 森林(Forest)
+---
+#### 遍历
+
+### 哈弗曼树(Huffman Tree)
+---
+
+### 哈弗曼树构造
+
+### 哈弗曼编码
+
+### 哈弗曼压缩算法
+
+## 图(Graph)
+---
+
+### 存储表示
+---
+
+#### 邻接矩阵(Adjacent Matrix)
+---
+
+#### 邻接表(Adjacent Table)
+---
+
+### 遍历
+---
+#### 深度优先搜索(Depth First Search)
+
+#### 广度优先搜索(Breadth First Search)
+
+### 最小生成树
+---
+
+#### Prim算法
+
+#### Kruskal算法
+
+### 有向无环图(Directed Acyclic Graph)
+---
+
+#### 拓扑排序(Topology Sort)
+
+#### 关键路径(Critical Path)
+
+### 最短路径(Shortest Path)
+---
+
+#### Dijkstra算法
+单源最短路径
+
+#### Froyd算法
+所有顶点之间的最短路径
+
+## 查找(Search)
+---
+### 静态查找表
+---
+### 动态查找表
+---
+
+#### 二叉排序树
+
+#### 二叉平衡树(AVL Tree)
+
+#### B树
+
+#### B+树
+
+### 散列表
+---
+
+## 排序(Sort)
+---
+
+### 简单排序
+---
+#### 冒泡排序(Bubble Sort)
+
+#### 选择排序(Selection Sort)
+
+#### 插入排序(Insertion Sort)
+
+#### 希尔排序(Shell Sort)
+
+### 高级排序
+---
+#### 快速排序(Quick Sort)
+1. 递归
+
+2. 非递归
+
+#### 归并排序(Merge Sort)
+1. 递归
+
+2. 非递归
+
+#### 堆排序(Heap Sort)

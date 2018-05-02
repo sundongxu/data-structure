@@ -48,8 +48,8 @@ DbLinkList<ElemType>::~DbLinkList()
 {
     // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
     Clear();           // 释放非头结点空间
-    head->next = NULL; // 这步很关键啊！！！
-    head->back = NULL; // 这步很关键啊！！！
+    head->next = nullptr; // 这步很关键啊！！！
+    head->back = nullptr; // 这步很关键啊！！！
     delete head;       // 释放头结点空间
 }
 
@@ -157,9 +157,9 @@ int DbLinkList<ElemType>::Delete(int position, ElemType &e)
             curPtr = tmpPtr->next;  // 设置指向当前位置的指针
         }
         count--;
-        tmpPtr->back = NULL;
-        tmpPtr->next = NULL;
-        delete tmpPtr; // 释放被删结点，肯定会有坑！tmpPtr->back = NULL, tmpPtr->next = NULL
+        tmpPtr->back = nullptr;
+        tmpPtr->next = nullptr;
+        delete tmpPtr; // 释放被删结点，肯定会有坑！tmpPtr->back = nullptr, tmpPtr->next = nullptr
         return SUCCESS;
     }
 }

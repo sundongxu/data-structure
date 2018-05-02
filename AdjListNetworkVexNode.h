@@ -15,7 +15,7 @@ public:
 
   // 构造函数
   AdjListNetworkVexNode();                                                                    // 无参数的构造函数
-  AdjListNetworkVexNode(ElemType item, LinkList<AdjListNetworkEdge<WeightType>> *adj = NULL); // 构造顶点数据为item，指向邻接链表的指针为adj的结构
+  AdjListNetworkVexNode(ElemType item, LinkList<AdjListNetworkEdge<WeightType>> *adj = nullptr); // 构造顶点数据为item，指向邻接链表的指针为adj的结构
   void SetData(const int d);
 };
 
@@ -23,7 +23,7 @@ template <class ElemType, class WeightType>
 AdjListNetworkVexNode<ElemType, WeightType>::AdjListNetworkVexNode()
 {
   // 操作结果：默认构造一个邻接表网的空结点
-  adjLink = NULL;
+  adjLink = nullptr;
 }
 
 template <class ElemType, class WeightType>

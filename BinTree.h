@@ -2,7 +2,6 @@
 #define BIN_TREE_H
 
 #include <iostream>
-#include <stddef.h>
 #include "Constant.h"
 #include "BinTreeNode.h"
 #include "LinkQueue.h"
@@ -85,7 +84,7 @@ template <class ElemType>
 BinTree<ElemType>::BinTree()
 {
   // 操作结果：构造一个空二叉树
-  //    root = NULL;
+  //    root = nullptr;
   Init();
 }
 
@@ -107,21 +106,21 @@ template <class ElemType>
 bool BinTree<ElemType>::Empty() const
 {
   // 操作结果：判断二叉树是否为空
-  return root == NULL;
+  return root == nullptr;
 }
 
 template <class ElemType>
 bool BinTree<ElemType>::IsLeaf(BinTreeNode<ElemType> *cur) const
 {
   // 操作结果：判断结点cur是否为叶结点
-  return cur->leftChild == NULL && cur->rightChild == NULL;
+  return cur->leftChild == nullptr && cur->rightChild == nullptr;
 }
 
 template <class ElemType>
 int BinTree<ElemType>::GetElem(BinTreeNode<ElemType> *cur, ElemType &e) const
 {
   // 操作结果：用e返回结点元素值
-  if (cur == NULL)
+  if (cur == nullptr)
   {
     // 结点为空，无数据域，即结点不存在
     return NOT_PRESENT;
@@ -137,7 +136,7 @@ template <class ElemType>
 int BinTree<ElemType>::SetElem(BinTreeNode<ElemType> *cur, const ElemType &e)
 {
   // 操作结果：将结点cur数据域置为e
-  if (cur == NULL)
+  if (cur == nullptr)
   {
     // 结点为空，即结点不存在（位置不对）
     return RANGE_ERROR;
@@ -177,7 +176,7 @@ void BinTree<ElemType>::LevelOrder(void (*Visit)(ElemType &))
   BinTreeNode<ElemType> *t = root;
   LinkQueue<BinTreeNode<ElemType> *> q;
 
-  if (t != NULL)
+  if (t != nullptr)
   {
     q.InQueue(t);
   }
@@ -186,11 +185,11 @@ void BinTree<ElemType>::LevelOrder(void (*Visit)(ElemType &))
     // q非空说明还有结点没被访问
     q.OutQueue(t);
     (*Visit)(t->data);
-    if (t->leftChild != NULL)
+    if (t->leftChild != nullptr)
     {
       q.InQueue(t->leftChild);
     }
-    if (t->rightChild != NULL)
+    if (t->rightChild != nullptr)
     {
       q.InQueue(t->rightChild);
     }
@@ -208,14 +207,14 @@ template <class ElemType>
 BinTreeNode<ElemType> *BinTree<ElemType>::LeftChild(const BinTreeNode<ElemType> *cur) const
 {
   // 操作结果：返回结点cur的左孩子
-  return (cur == NULL) ? NULL : cur->leftChild;
+  return (cur == nullptr) ? nullptr : cur->leftChild;
 }
 
 template <class ElemType>
 BinTreeNode<ElemType> *BinTree<ElemType>::RightChild(const BinTreeNode<ElemType> *cur) const
 {
   // 操作结果：返回结点cur的右孩子
-  return (cur == NULL) ? NULL : cur->rightChild;
+  return (cur == nullptr) ? nullptr : cur->rightChild;
 }
 
 template <class ElemType>
@@ -229,16 +228,16 @@ template <class ElemType>
 void BinTree<ElemType>::InsertLeftChild(BinTreeNode<ElemType> *cur, const ElemType &e)
 {
   // 操作结点：在结点cur处插入元素值为e的左孩子结点
-  if (cur != NULL)
+  if (cur != nullptr)
   {
-    BinTreeNode<ElemType> *new_node = new BinTreeNode<ElemType>(e, NULL, NULL);
-    if (new_node == NULL)
+    BinTreeNode<ElemType> *new_node = new BinTreeNode<ElemType>(e, nullptr, nullptr);
+    if (new_node == nullptr)
     {
       // 开辟内存失败
       cout << "BinTree::InsertLeftChild()申请内存空间失败!" << endl;
       return;
     }
-    if (cur->leftChild == NULL)
+    if (cur->leftChild == nullptr)
     {
       // cur左孩子为空，直接插入
       cur->leftChild = new_node;
@@ -256,16 +255,16 @@ template <class ElemType>
 void BinTree<ElemType>::InsertRightChild(BinTreeNode<ElemType> *cur, const ElemType &e)
 {
   // 操作结点：在结点cur处插入元素值为e的右孩子结点
-  if (cur != NULL)
+  if (cur != nullptr)
   {
-    BinTreeNode<ElemType> *new_node = new BinTreeNode<ElemType>(e, NULL, NULL);
-    if (new_node == NULL)
+    BinTreeNode<ElemType> *new_node = new BinTreeNode<ElemType>(e, nullptr, nullptr);
+    if (new_node == nullptr)
     {
       // 开辟内存失败
       cout << "BinTree::InsertRightChild()申请内存空间失败!" << endl;
       return;
     }
-    if (cur->rightChild == NULL)
+    if (cur->rightChild == nullptr)
     {
       // cur左孩子为空，直接插入
       cur->rightChild = new_node;
@@ -283,15 +282,15 @@ template <class ElemType>
 void BinTree<ElemType>::DeleteLeftChild(BinTreeNode<ElemType> *cur)
 {
   // 操作结点：删除结点cur的左子树，调用DestroyHelp方法
-  if (cur != NULL)
+  if (cur != nullptr)
   {
     BinTreeNode<ElemType> *leftChild = cur->leftChild;
-    if (leftChild != NULL)
+    if (leftChild != nullptr)
     {
       DestroyHelp(cur->leftChild);  // 销毁cur的左子树
       DestroyHelp(cur->rightChild); // 销毁cur的右子树
       delete (leftChild);
-      leftChild = NULL;
+      leftChild = nullptr;
     }
   }
 }
@@ -300,15 +299,15 @@ template <class ElemType>
 void BinTree<ElemType>::DeleteRightChild(BinTreeNode<ElemType> *cur)
 {
   // 操作结点：删除结点cur的右子树，调用DestroyHelp方法
-  if (cur != NULL)
+  if (cur != nullptr)
   {
     BinTreeNode<ElemType> *rightChild = cur->rightChild;
-    if (rightChild != NULL)
+    if (rightChild != nullptr)
     {
       DestroyHelp(cur->leftChild);  // 销毁cur的左子树
       DestroyHelp(cur->rightChild); // 销毁cur的右子树
       delete (rightChild);
-      rightChild = NULL;
+      rightChild = nullptr;
     }
   }
 }
@@ -358,9 +357,9 @@ template <class ElemType>
 BinTreeNode<ElemType> *BinTree<ElemType>::CopyTreeHelp(BinTreeNode<ElemType> *copy)
 {
   // 操作结果：将以copy为根的二叉树复制成新的二叉树，返回新二叉树的根
-  if (copy == NULL)
+  if (copy == nullptr)
   {
-    return NULL;
+    return nullptr;
   }
   else
   {
@@ -376,13 +375,13 @@ template <class ElemType>
 void BinTree<ElemType>::DestroyHelp(BinTreeNode<ElemType> *r)
 {
   // 操作结果：销毁以r为根的二叉树
-  if (r != NULL)
+  if (r != nullptr)
   {
     // r非空，实施销毁
     DestroyHelp(r->leftChild);
     DestroyHelp(r->rightChild);
     delete r;
-    r = NULL; // 先释放指针指向空间的内存，再将指针置空！！！
+    r = nullptr; // 先释放指针指向空间的内存，再将指针置空！！！
   }
 }
 
@@ -391,7 +390,7 @@ template <class ElemType>
 void BinTree<ElemType>::PreOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
 {
   // 操作结果：先序遍历以r为根的二叉树
-  if (r != NULL)
+  if (r != nullptr)
   {
     (*Visit)(r->data);                  //访问根结点
     PreOrderHelp(r->leftChild, Visit);  // 递归访问左子树
@@ -403,7 +402,7 @@ template <class ElemType>
 void BinTree<ElemType>::InOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
 {
   // 操作结果：中序遍历以r为根的二叉树
-  if (r != NULL)
+  if (r != nullptr)
   {
     InOrderHelp(r->leftChild, Visit);
     (*Visit)(r->data);
@@ -415,7 +414,7 @@ template <class ElemType>
 void BinTree<ElemType>::PostOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
 {
   // 操作结果：后序遍历以r为根的二叉树
-  if (r != NULL)
+  if (r != nullptr)
   {
     PostOrderHelp(r->leftChild, Visit);
     PostOrderHelp(r->rightChild, Visit);
@@ -427,7 +426,7 @@ template <class ElemType>
 int BinTree<ElemType>::HeightHelp(const BinTreeNode<ElemType> *r) const
 {
   // 操作结果：返回以r为根的二叉树的高
-  if (r == NULL)
+  if (r == nullptr)
   {
     return 0;
   }
@@ -445,7 +444,7 @@ template <class ElemType>
 int BinTree<ElemType>::NodeCountHelp(const BinTreeNode<ElemType> *r) const
 {
   // 操作结果：返回以r为根的二叉树的结点个数
-  if (r == NULL)
+  if (r == nullptr)
   {
     return 0;
   }
@@ -462,10 +461,10 @@ BinTree<ElemType>::ParentHelp(BinTreeNode<ElemType> *r, const BinTreeNode<ElemTy
 {
   // 操作结点：在根为r的二叉树中找到结点cur的双亲结点，用递归
   BinTreeNode<ElemType> *tmpPtr = r; // 前驱指针
-  if (r == NULL || cur == NULL)
+  if (r == nullptr || cur == nullptr)
   {
     // 树为空或参数为空
-    return NULL;
+    return nullptr;
   }
   else
   {
@@ -479,7 +478,7 @@ BinTree<ElemType>::ParentHelp(BinTreeNode<ElemType> *r, const BinTreeNode<ElemTy
       // tmpPtr不是cur的双亲结点，递归寻找
       BinTreeNode<ElemType> *lParent = ParentHelp(tmpPtr->leftChild, cur);
       BinTreeNode<ElemType> *rParent = ParentHelp(tmpPtr->rightChild, cur);
-      return lParent ? lParent : (rParent ? rParent : NULL);
+      return lParent ? lParent : (rParent ? rParent : nullptr);
     }
   }
 }
@@ -488,7 +487,7 @@ template <class ElemType>
 void DisplayBTWithTreeShapeHelp(BinTreeNode<ElemType> *r, int level)
 {
   // 操作结果：按树状形式显示以r为根的二叉树，level为层次数，可设根结点的层次数为1
-  if (r != NULL)
+  if (r != nullptr)
   {
     // 空树不显示
     DisplayBTWithTreeShapeHelp<ElemType>(r->rightChild, level + 1);
@@ -519,7 +518,7 @@ void CreateBinTreeHelp(BinTreeNode<ElemType> *&r, ElemType pre[], ElemType in[],
   if (inLeft > inRight)
   {
     // 二叉树无结点，空二叉树
-    r = NULL;
+    r = nullptr;
   }
   else
   {
