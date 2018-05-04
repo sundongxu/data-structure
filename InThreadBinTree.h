@@ -117,7 +117,7 @@ void InThreadBinTree<ElemType>::InThread()
 {
     // 操作结果：中序线索化二叉树
     ThreadBinTreeNode<ElemType> *pre = nullptr; // 开始线索化时前驱为空
-    InThreadHelp(root, pre);                 // 中序线索化以root为根的二叉树
+    InThreadHelp(root, pre);                    // 中序线索化以root为根的二叉树
     if (pre->rightChild == nullptr)
     {
         // pre为中序序列中最后一个结点
@@ -138,7 +138,7 @@ void InThreadBinTree<ElemType>::InOrder(void (*Visit)(ElemType &))
         }
         while (cur != nullptr)
         {
-            (*Visit)(cur->data); // 访问当前结点
+            (*Visit)(cur->val); // 访问当前结点
             if (cur->rightTag == THREAD_PTR)
             {
                 // 右链域为线索，后继为cur->rightChild

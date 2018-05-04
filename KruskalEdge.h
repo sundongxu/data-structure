@@ -1,8 +1,6 @@
 #ifndef KRUSKAL_EDGE_H
 #define KRUSKAL_EDGE_H
 
-#include <stddef.h> // 包含nullptr定义，实际nullptr==0
-
 // Kruskal算法实现，图边类
 template <class WeightType>
 class KruskalEdge

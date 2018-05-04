@@ -1,8 +1,6 @@
 #ifndef THREAD_BIN_TREE_NODE_H
 #define THREAD_BIN_TREE_NODE_H
 
-#include <stddef.h>
-
 enum PointerTagType
 {
   CHILD_PTR,
@@ -16,7 +14,7 @@ class ThreadBinTreeNode
 {
 public:
   // 数据成员：
-  ElemType data;                           // 数据域
+  ElemType val;                            // 数据域
   ThreadBinTreeNode<ElemType> *lefChild;   // 左孩子指针域
   ThreadBinTreeNode<ElemType> *rightChild; // 右孩子指针域
   PointerTagType leftTag, rightTag;        // 左右标志域

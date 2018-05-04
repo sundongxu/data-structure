@@ -50,9 +50,9 @@ template <class ElemType>
 SimpleCircLinkList<ElemType>::~SimpleCircLinkList()
 {
     // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
-    Clear();           // 释放非头结点空间
+    Clear();              // 释放非头结点空间
     head->next = nullptr; // 这步很关键啊！！！
-    delete head;       // 释放头结点空间
+    delete head;          // 释放头结点空间
 }
 
 template <class ElemType>
@@ -95,7 +95,7 @@ void SimpleCircLinkList<ElemType>::Traverse(void (*Visit)(ElemType &))
     for (Node<ElemType> *tmpPtr = head->next; tmpPtr != head; tmpPtr = tmpPtr->next)
     {
         // 用tmpPtr指向每个元素
-        (*Visit)(tmpPtr->data); // 对线性表的每个元素调用(*Visit)
+        (*Visit)(tmpPtr->val); // 对线性表的每个元素调用(*Visit)
     }
 }
 
@@ -111,7 +111,7 @@ int SimpleCircLinkList<ElemType>::GetElem(int position, ElemType &e) const
     else
     {
         Node<ElemType> *tmpPtr = GetElemPtr(position);
-        e = tmpPtr->data;
+        e = tmpPtr->val;
         return ENTRY_FOUND;
     }
 }
@@ -128,7 +128,7 @@ int SimpleCircLinkList<ElemType>::SetElem(int position, const ElemType &e)
     else
     {
         Node<ElemType> *tmpPtr = GetElemPtr(position);
-        tmpPtr->data = e;
+        tmpPtr->val = e;
         return SUCCESS;
     }
 }
@@ -167,7 +167,7 @@ int SimpleCircLinkList<ElemType>::Delete(int position, ElemType &e)
         Node<ElemType> *nextPtr = tmpPtr->next;            // 真正要删除的结点
 
         tmpPtr->next = nextPtr->next;
-        e = nextPtr->data;
+        e = nextPtr->val;
 
         nextPtr->next = nullptr; // 这一步非常关键，为什么？
 

@@ -1,8 +1,8 @@
-#include "MinHeap.h"
+#include "MaxHeap.h"
 
-// 最小堆类的实现部分
+// 最大堆类的实现部分
 template <class ElemType>
-MinHeap<ElemType>::MinHeap(int size)
+MaxHeap<ElemType>::MaxHeap(int size)
 {
     maxHeapSize = size;
     heap = new ElemType[maxHeapSize];
@@ -15,7 +15,7 @@ MinHeap<ElemType>::MinHeap(int size)
 }
 
 template <class ElemType>
-MinHeap<ElemType>::MinHeap(ElemType arr[], int n)
+MaxHeap<ElemType>::MaxHeap(ElemType arr[], int n)
 {
     maxHeapSize = (DEFAULT_SIZE < n) ? n : DEFAULT_SIZE;
     heap = new ElemType[maxHeapSize];
@@ -36,21 +36,21 @@ MinHeap<ElemType>::MinHeap(ElemType arr[], int n)
 }
 
 template <class ElemType>
-void MinHeap<ElemType>::siftDown(int start, int m)
+void MaxHeap<ElemType>::siftDown(int start, int m)
 {
-    // 从结点start开始到结点m为止，自上向下比较，如果子女的值小于父结点的值
-    // 则关键码更小的子女上浮，继续向下层比较，这样将一个集合局部调整为最小堆
+    // 从结点start开始到结点m为止，自上向下比较，如果子女的值大于父结点的值
+    // 则关键码更大的子女上浮，继续向下层比较，这样将一个集合局部调整为最大堆
     int i = start, j = 2 * i + 1; // j是i的左孩子
     ElemType temp = heap[i];
     while (j <= m)
     {
-        if (j < m && heap[j] > heap[j + 1]) // i的右孩子比j(i的左孩子)更小，j指向右孩子(更小的)
+        if (j < m && heap[j] < heap[j + 1]) // i的右孩子比j(i的左孩子)更小，j指向右孩子(更小的)
             j++;
-        if (temp <= heap[j]) // i已经比其子女j小了，调整结束
+        if (temp >= heap[j]) // i已经比其子女j大了，调整结束
             break;
         else
         {
-            heap[i] = heap[j]; // i比子女j大，则j上浮替代i的位置，调整位置i和j均下降
+            heap[i] = heap[j]; // i比子女j小，则j上浮替代i的位置，调整位置i和j均下降
             i = j;
             j = 2 * j + 1;
         }
@@ -59,19 +59,19 @@ void MinHeap<ElemType>::siftDown(int start, int m)
 }
 
 template <class ElemType>
-void MinHeap<ElemType>::siftUp(int start)
+void MaxHeap<ElemType>::siftUp(int start)
 {
-    // 从结点start开始到结点0为止，自下而上比较，如果子女的值小于父结点的值
-    // 则子女上浮，继续向上层比较，这样将一个集合重新调整为最小堆，元素类型ElemType应自行定义"<="运算符
+    // 从结点start开始到结点0为止，自下而上比较，如果子女的值大于父结点的值
+    // 则子女上浮，继续向上层比较，这样将一个集合重新调整为最大堆，元素类型ElemType应自行定义">="运算符
     int j = start, i = (j - 1) / 2;
     ElemType temp = heap[j];
     while (j > 0) // 沿父结点路径向上直达根，i是j的父结点
     {
-        if (heap[i] <= temp) // 父结点值小，无需调整
+        if (heap[i] >= temp) // 父结点值大，无需调整
             break;
         else
         {
-            heap[j] = heap[i]; // i比子女j大，则i下滑取代j的位置，调整位置i和j均上滑
+            heap[j] = heap[i]; // i比子女j小，则i下滑取代j的位置，调整位置i和j均上滑
             j = i;
             i = (i - 1) / 2;
         }
@@ -80,7 +80,7 @@ void MinHeap<ElemType>::siftUp(int start)
 }
 
 template <class ElemType>
-bool MinHeap<ElemType>::Insert(const ElemType &e)
+bool MaxHeap<ElemType>::Insert(const ElemType &e)
 {
     if (currentSize == maxHeapSize) // 堆满
     {
@@ -94,7 +94,7 @@ bool MinHeap<ElemType>::Insert(const ElemType &e)
 }
 
 template <class ElemType>
-bool MinHeap<ElemType>::RemoveMin(ElemType &e)
+bool MaxHeap<ElemType>::RemoveMax(ElemType &e)
 {
     if (currentSize == 0) // 堆空
     {
@@ -109,7 +109,7 @@ bool MinHeap<ElemType>::RemoveMin(ElemType &e)
 }
 
 template <class ElemType>
-MinHeap<ElemType>::MinHeap(const MinHeap<ElemType> &copy)
+MaxHeap<ElemType>::MaxHeap(const MaxHeap<ElemType> &copy)
 {
     // 操作结果： 复制构造函数，从无到有
     // 一开始没有这个对象，重新申请空间构造一个与之前对象完全不同内存空间的对象
@@ -117,12 +117,12 @@ MinHeap<ElemType>::MinHeap(const MinHeap<ElemType> &copy)
     maxHeapSize = copy.maxHeapSize;
     currentSize = copy.currentSize;
     for (int pos = 0; pos < copy.currentSize; pos++)
-        // 遍历最小堆copy，将其每个元素插入到本堆
+        // 遍历最大堆copy，将其每个元素插入到本堆
         heap[pos] = copy.heap[pos];
 }
 
 template <class ElemType>
-MinHeap<ElemType> &MinHeap<ElemType>::operator=(MinHeap<ElemType> &copy)
+MaxHeap<ElemType> &MaxHeap<ElemType>::operator=(MaxHeap<ElemType> &copy)
 {
     // 操作结果：赋值运算符重载，从老到新
     // 一开始已经有了对象this，要检查自赋值并清空原线性表，仍需重新申请空间构造与之前完全不同的内存位置的表
@@ -135,16 +135,16 @@ MinHeap<ElemType> &MinHeap<ElemType>::operator=(MinHeap<ElemType> &copy)
         maxHeapSize = copy.maxHeapSize;
         currentSize = copy.currentSize;
         for (int pos = 0; pos < copy.currentSize; pos++)
-            // 遍历最小堆copy，将其每个元素插入到本堆
+            // 遍历最大堆copy，将其每个元素插入到本堆
             heap[pos] = copy.heap[pos];
     }
     return *this;
 }
 
 template <class ElemType>
-std::ostream &operator<<(std::ostream &os, MinHeap<ElemType> &heap)
+std::ostream &operator<<(std::ostream &os, MaxHeap<ElemType> &heap)
 {
-    // 操作结果：遍历输出最小堆元素
+    // 操作结果：遍历输出最大堆元素
     for (int i = 0; i < heap.currentSize; i++)
     {
         os << i << ": " << heap.heap[i] << endl;
@@ -154,15 +154,15 @@ std::ostream &operator<<(std::ostream &os, MinHeap<ElemType> &heap)
 
 int main()
 {
-    // 最小堆成员函数测试
+    // 最大堆成员函数测试
     int arr[8] = {53, 17, 78, 9, 45, 65, 87, 23};
-    MinHeap<int> heap1(arr, 8); // 数组参数的构造函数
+    MaxHeap<int> heap1(arr, 8); // 数组参数的构造函数
     cout << "heap1:" << endl;
     cout << heap1 << endl;
-    MinHeap<int> heap2(heap1); // 拷贝构造函数
+    MaxHeap<int> heap2(heap1); // 拷贝构造函数
     cout << "heap2:" << endl;
     cout << heap2 << endl;
-    MinHeap<int> heap3; // 无参数的构造函数，空堆
+    MaxHeap<int> heap3; // 无参数的构造函数，空堆
     cout << "heap3 (before assignment):" << endl;
     cout << heap3 << endl;
     heap3 = heap2; // 赋值拷贝

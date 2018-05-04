@@ -127,7 +127,7 @@ int BinTree<ElemType>::GetElem(BinTreeNode<ElemType> *cur, ElemType &e) const
   }
   else
   {
-    e = cur->data;
+    e = cur->val;
     return ENTRY_FOUND;
   }
 }
@@ -143,7 +143,7 @@ int BinTree<ElemType>::SetElem(BinTreeNode<ElemType> *cur, const ElemType &e)
   }
   else
   {
-    cur->data = e;
+    cur->val = e;
     return SUCCESS;
   }
 }
@@ -184,7 +184,7 @@ void BinTree<ElemType>::LevelOrder(void (*Visit)(ElemType &))
   {
     // q非空说明还有结点没被访问
     q.OutQueue(t);
-    (*Visit)(t->data);
+    (*Visit)(t->val);
     if (t->leftChild != nullptr)
     {
       q.InQueue(t->leftChild);
@@ -324,7 +324,7 @@ BinTree<ElemType>::BinTree(const ElemType &e)
 {
   // 操作结果：构造以e为根结点数据域的二叉树
   Init();
-  root->data = e;
+  root->val = e;
 }
 
 template <class ElemType>
@@ -364,9 +364,9 @@ BinTreeNode<ElemType> *BinTree<ElemType>::CopyTreeHelp(BinTreeNode<ElemType> *co
   else
   {
     // 复制非空二叉树
-    BinTreeNode<ElemType> *lChild = CopyTreeHelp(copy->leftChild);                    // 复制左子树，获取左子树的根
-    BinTreeNode<ElemType> *rChild = CopyTreeHelp(copy->rightChild);                   // 复制右子树，获取右子树的根
-    BinTreeNode<ElemType> *r = new BinTreeNode<ElemType>(copy->data, lChild, rChild); // 复制根结点
+    BinTreeNode<ElemType> *lChild = CopyTreeHelp(copy->leftChild);                   // 复制左子树，获取左子树的根
+    BinTreeNode<ElemType> *rChild = CopyTreeHelp(copy->rightChild);                  // 复制右子树，获取右子树的根
+    BinTreeNode<ElemType> *r = new BinTreeNode<ElemType>(copy->val, lChild, rChild); // 复制根结点
     return r;
   }
 }
@@ -392,7 +392,7 @@ void BinTree<ElemType>::PreOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(Ele
   // 操作结果：先序遍历以r为根的二叉树
   if (r != nullptr)
   {
-    (*Visit)(r->data);                  //访问根结点
+    (*Visit)(r->val);                   //访问根结点
     PreOrderHelp(r->leftChild, Visit);  // 递归访问左子树
     PreOrderHelp(r->rightChild, Visit); // 递归访问右子树
   }
@@ -405,7 +405,7 @@ void BinTree<ElemType>::InOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(Elem
   if (r != nullptr)
   {
     InOrderHelp(r->leftChild, Visit);
-    (*Visit)(r->data);
+    (*Visit)(r->val);
     InOrderHelp(r->rightChild, Visit);
   }
 }
@@ -418,7 +418,7 @@ void BinTree<ElemType>::PostOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(El
   {
     PostOrderHelp(r->leftChild, Visit);
     PostOrderHelp(r->rightChild, Visit);
-    (*Visit)(r->data);
+    (*Visit)(r->val);
   }
 }
 
@@ -497,7 +497,7 @@ void DisplayBTWithTreeShapeHelp(BinTreeNode<ElemType> *r, int level)
     {
       cout << " "; // 确保在第level列显示结点
     }
-    cout << r->data;                                               // 显示结点
+    cout << r->val;                                                // 显示结点
     DisplayBTWithTreeShapeHelp<ElemType>(r->leftChild, level + 1); // 显示左子树
   }
 }

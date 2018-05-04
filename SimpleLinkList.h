@@ -1,7 +1,6 @@
 #ifndef SIMPLE_LINKLIST_H
 #define SIMPLE_LINKLIST_H
 
-#include <stddef.h>
 #include "Constant.h"
 #include "Node.h"
 

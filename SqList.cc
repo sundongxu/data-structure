@@ -14,7 +14,7 @@ void SqList<ElemType>::Init(int size)
     // 操作结果：初始化线性表
     count = 0;
     maxSize = size;
-    if (elems != nullptrptr)
+    if (elems != nullptr)
     {
         delete[] elems;
     }
@@ -25,7 +25,7 @@ template <class ElemType>
 SqList<ElemType>::SqList(int size)
 {
     // 操作结果：创建含size个元素的线性表
-    elems = nullptrptr;
+    elems = nullptr;
     Init(size);
 }
 
@@ -122,7 +122,7 @@ int SqList<ElemType>::Insert(int position, const ElemType &e)
         for (int curPosition = count; curPosition >= position; curPosition--)
         {
             //elems[curPosition] = elems[curPosition - 1];
-            GetElem(curPosition, tmp);
+            GetElem(curPosit(); ion, tmp);
             SetElem(curPosition + 1, tmp);
         }
         count++;
@@ -163,7 +163,7 @@ template <class ElemType>
 SqList<ElemType>::SqList(const SqList<ElemType> &copy)
 {
     //操作结果：复制构造，从无到有
-    elems = nullptrptr; //清空原来的线性表
+    elems = nullptr; //清空原来的线性表
     int copyLength = copy.Length();
     ElemType tmp;
     Init(copy.maxSize);

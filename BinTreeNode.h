@@ -11,7 +11,7 @@ public:
   BinTreeNode<ElemType> *leftChild;  //左孩子指针域
   BinTreeNode<ElemType> *rightChild; //右孩子指针域
 
-  BinTreeNode();                                                                                                      //无参构造
+  BinTreeNode();                                                                                                    //无参构造
   BinTreeNode(const ElemType &v, BinTreeNode<ElemType> *lChild = nullptr, BinTreeNode<ElemType> *rChild = nullptr); //已知元素值和指向左右孩子的指针构造一个结点
 };
 
@@ -25,7 +25,7 @@ BinTreeNode<ElemType>::BinTreeNode()
 template <class ElemType>
 BinTreeNode<ElemType>::BinTreeNode(const ElemType &v, BinTreeNode<ElemType> *lChild, BinTreeNode<ElemType> *rChild)
 {
-  //构造一个数据域为data，左孩子为lChild，右孩子为rChild的结点
+  //构造一个数据域为v，左孩子为lChild，右孩子为rChild的结点
   val = v;
   leftChild = lChild;
   rightChild = rChild;

@@ -13,7 +13,7 @@ template <class ElemType>
 DblNode<ElemType>::DblNode(ElemType item, DblNode<ElemType> *linkBack, DblNode<ElemType> *linkNext)
 {
     // 操作结果：构造一个数据域为item和指针域为linkBack和linkNext的结点
-    data = item;
+    val = item;
     back = linkBack;
     next = linkNext;
 }

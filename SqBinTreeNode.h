@@ -9,7 +9,7 @@ class SqBinTreeNode
 {
 public:
   // 数据成员
-  ElemType data;            // 数据域
+  ElemType val;             // 数据域
   SqBinTreeNodeTagType tag; // 结点使用标志
 
   SqBinTreeNode();                                                    // 无参构造函数

@@ -1,7 +1,6 @@
-#ifndef SQLIST_H
-#define SQLIST_H
+#ifndef SQ_LIST_H
+#define SQ_LIST_H
 
-#include <cstddef>
 #include "Constant.h"
 
 // 线性顺序表类

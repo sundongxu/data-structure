@@ -1,7 +1,6 @@
 #ifndef KRUSKAL_FOREST_H
 #define KRUSKAL_FOREST_H
 
-#include <stddef.h> // 包含nullptr定义，实际nullptr==0
 #include "Constant.h"
 
 // Kruskal算法实现，森林类

@@ -352,7 +352,7 @@ int main()
     // tree.InsertRightChild(tree.GetRoot()->rightChild, 'F');
     // tree.InsertRightChild(tree.GetRoot()->leftChild->leftChild, 'G');
     // cout << "结点B的父结点为:";
-    // cout << tree.Parent(tree.LeftChild(tree.GetRoot()))->data << endl;
+    // cout << tree.Parent(tree.LeftChild(tree.GetRoot()))->val << endl;
     // cout << "二叉树的高度为:";
     // cout << tree.Height() << endl;
     // cout << "二叉树的结点数为:";

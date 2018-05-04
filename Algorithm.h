@@ -603,8 +603,8 @@ void NonRecurPreOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
     while (cur != nullptr)
     {
         // 处理当前结点
-        (*Visit)(cur->data); // 访问当前结点，本算法唯一的访问结点操作
-        s.Push(cur);         //当前结点入栈
+        (*Visit)(cur->val); // 访问当前结点，本算法唯一的访问结点操作
+        s.Push(cur);        //当前结点入栈
 
         if (cur->leftChild != nullptr)
         {
@@ -675,7 +675,7 @@ void NonRecurInOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
 
     while (cur != nullptr)
     {
-        (*Visit)(cur->data);
+        (*Visit)(cur->val);
         if (cur->rightChild != nullptr)
         {
             // 右孩子不为空，cur的中序序列后继为右子树的最左侧结点
@@ -745,8 +745,8 @@ void NonRecurPostOrderHelp(BinTreeNode<ElemType> *r, void (*Visit)(ElemType &))
         if (cur->node->rightChild == nullptr || cur->rightSubTreeVisited)
         {
             // 如当前结点无右子树或右子树已被访问
-            (*Visit)(cur->node->data); // 访问当前结点
-            delete cur;                // 释放空间
+            (*Visit)(cur->node->val); // 访问当前结点
+            delete cur;               // 释放空间
             if (!s.Empty())
             {
                 // 栈非空，则栈顶即为下一次要访问的结点
@@ -1110,11 +1110,11 @@ int TopSort(const AdjMatrixDirGraph<ElemType> &g)
 
     if (count < g.GetVexNum())
     {
-        return TOP_FAIL; // 图g有回路
+        return TOPO_FAIL; // 图g有回路
     }
     else
     {
-        return TOP_SUCCESS; // 拓扑排序成功
+        return TOPO_SUCCESS; // 拓扑排序成功
     }
 }
 

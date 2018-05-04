@@ -1,5 +1,6 @@
 #include "LinkList.h"
 
+// 线性链表类的实现部分
 template <class ElemType>
 Node<ElemType> *LinkList<ElemType>::GetElemPtr(int position) const
 {
@@ -80,7 +81,7 @@ void LinkList<ElemType>::Traverse(void (*Visit)(ElemType &))
     // 操作结果：遍历线性表
     for (Node<ElemType> *tmpPtr = head->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
     {
-        (*Visit)(tmpPtr->data);
+        (*Visit)(tmpPtr->val);
     }
 }
 
@@ -103,7 +104,7 @@ int LinkList<ElemType>::GetElem(int position, ElemType &e) const
     else
     {
         Node<ElemType> *tmpPtr = GetElemPtr(position);
-        e = tmpPtr->data;
+        e = tmpPtr->val;
         return ENTRY_FOUND;
     }
 }
@@ -120,7 +121,7 @@ int LinkList<ElemType>::SetElem(int position, const ElemType &e)
     else
     {
         Node<ElemType> *tmpPtr = GetElemPtr(position);
-        tmpPtr->data = e;
+        tmpPtr->val = e;
         return SUCCESS;
     }
 }
@@ -143,7 +144,7 @@ int LinkList<ElemType>::Delete(int position, ElemType &e)
         tmpPtr = GetElemPtr(position - 1);      // GetElem从1开始取结点元素,tmpPtr指向待删除结点的前一个结点
         Node<ElemType> *nextPtr = tmpPtr->next; // 待删除结点的下一个结点
         tmpPtr->next = nextPtr->next;
-        e = nextPtr->data;
+        e = nextPtr->val;
         if (position == count)
         {
             // 删除尾结点，当前结点变为头结点
@@ -159,7 +160,7 @@ int LinkList<ElemType>::Delete(int position, ElemType &e)
         count--;
         // 关键一步：在释放nextPtr指向结点内存空间前，先把它的全部指针域置空
         nextPtr->next = nullptr; // 记住这个坑！
-        delete nextPtr;       // 释放被删结点
+        delete nextPtr;          // 释放被删结点
         nextPtr = nullptr;
         return SUCCESS;
     }
@@ -245,5 +246,6 @@ std::ostream &operator<<(std::ostream &os, LinkList<ElemType> &list)
 int main()
 {
     // 线性链表成员函数测试
+    LinkList<int> l;
     return 0;
 }

@@ -51,10 +51,10 @@ template <class ElemType>
 SimpleDbLinkList<ElemType>::~SimpleDbLinkList()
 {
     // 操作结果：析构函数，待释放的存储空间包括数据节点和头结点
-    Clear();           // 释放非头结点空间
+    Clear();              // 释放非头结点空间
     head->next = nullptr; // 这步很关键啊！！！
     head->back = nullptr; // 这步很关键啊！！！
-    delete head;       // 释放头结点空间
+    delete head;          // 释放头结点空间
 }
 
 template <class ElemType>
@@ -97,7 +97,7 @@ void SimpleDbLinkList<ElemType>::Traverse(void (*Visit)(ElemType &))
     for (DblNode<ElemType> *tmpPtr = head->next; tmpPtr != head; tmpPtr = tmpPtr->next)
     {
         // 用tmpPtr指向每个元素
-        (*Visit)(tmpPtr->data); // 对线性表的每个元素调用(*Visit)
+        (*Visit)(tmpPtr->val); // 对线性表的每个元素调用(*Visit)
     }
 }
 
@@ -113,7 +113,7 @@ int SimpleDbLinkList<ElemType>::GetElem(int position, ElemType &e) const
     else
     {
         DblNode<ElemType> *tmpPtr = GetElemPtr(position);
-        e = tmpPtr->data;
+        e = tmpPtr->val;
         return ENTRY_FOUND;
     }
 }
@@ -130,7 +130,7 @@ int SimpleDbLinkList<ElemType>::SetElem(int position, const ElemType &e)
     else
     {
         DblNode<ElemType> *tmpPtr = GetElemPtr(position);
-        tmpPtr->data = e;
+        tmpPtr->val = e;
         return SUCCESS;
     }
 }
@@ -153,7 +153,7 @@ int SimpleDbLinkList<ElemType>::Delete(int position, ElemType &e)
         tmpPtr = GetElemPtr(position);     // 取出指向第position个结点的指针
         tmpPtr->back->next = tmpPtr->next; // 修改向右的指针
         tmpPtr->next->back = tmpPtr->back; // 修改向左的指针
-        e = tmpPtr->data;                  //用e返回被删结点元素值
+        e = tmpPtr->val;                   //用e返回被删结点元素值
         tmpPtr->back = nullptr;
         tmpPtr->next = nullptr;
         delete tmpPtr; // 释放被删结点，肯定会有坑！tmpPtr->back = nullptr, tmpPtr->next = nullptr

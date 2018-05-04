@@ -2,7 +2,6 @@
 #define LINK_LIST_H
 
 #include <iostream>
-#include <stddef.h>
 #include "Constant.h"
 #include "Node.h"
 

@@ -2,9 +2,7 @@
 #define MIN_HEAP_H
 
 #include <iostream>
-#include <cstddef>
-#include <cstdlib>
-#define DefaultSize 10
+#include "Constant.h"
 
 using namespace std;
 
@@ -20,9 +18,9 @@ protected:
   void siftUp(int start);          // 从start到0上滑调整成为最小堆
 
 public:
-  MinHeap(int size = DefaultSize); // 构造函数：建立空堆
-  MinHeap(ElemType arr[], int n);  // 通过一个数组建堆
-  ~MinHeap() { delete[] heap; };   // 析构函数
+  MinHeap(int size = DEFAULT_SIZE); // 构造函数：建立空堆
+  MinHeap(ElemType arr[], int n);   // 通过一个数组建堆
+  ~MinHeap() { delete[] heap; };    // 析构函数
 
   bool Insert(const ElemType &e);
   bool RemoveMin(ElemType &e);                               // 删除堆顶元素，即最小元素
@@ -34,7 +32,7 @@ public:
   MinHeap<ElemType> &operator=(MinHeap<ElemType> &copy); // 重载赋值运算符
 
   template <class T>
-  friend std::ostream &operator<<(std::ostream &os, MinHeap<T> &ll);
+  friend std::ostream &operator<<(std::ostream &os, MinHeap<T> &heap);
 };
 
 #endif // MIN_HEAP_H

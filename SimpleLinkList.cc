@@ -86,7 +86,7 @@ void SimpleLinkList<ElemType>::Traverse(void (*Visit)(ElemType))
     // 操作结果：遍历简单线性表
     for (Node<ElemType> *tmpPtr = head->next; tmpPtr != nullptr; tmpPtr = tmpPtr->next)
     {
-        (*Visit)(tmpPtr->data);
+        (*Visit)(tmpPtr->val);
     }
 }
 
@@ -102,7 +102,7 @@ int SimpleLinkList<ElemType>::GetElem(int position, ElemType &e) const
     else
     {
         Node<ElemType> *tmpPtr = GetElemPtr(position);
-        e = tmpPtr->data;
+        e = tmpPtr->val;
         return ENTRY_FOUND;
     }
 }
@@ -119,7 +119,7 @@ int SimpleLinkList<ElemType>::SetElem(int position, const ElemType &e)
     else
     {
         Node<ElemType> *tmpPtr = GetElemPtr(position);
-        tmpPtr->data = e;
+        tmpPtr->val = e;
         return SUCCESS;
     }
 }
@@ -158,7 +158,7 @@ int SimpleLinkList<ElemType>::Delete(int position, ElemType &e)
         Node<ElemType> *nextPtr = tmpPtr->next;            // 真正要删除的结点
 
         tmpPtr->next = nextPtr->next;
-        e = nextPtr->data;
+        e = nextPtr->val;
 
         nextPtr->next = nullptr; // 这一步非常关键，为什么？
 
